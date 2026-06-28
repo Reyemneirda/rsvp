@@ -1,34 +1,36 @@
 # Site RSVP — Mariage Adrien & Alina
 
 Site web dédié au RSVP, inspiré du style « Sharon & Lucas » (bleu marine + crème,
-police Niconne), avec sections : cérémonie, hébergement, confirmation de présence,
-page cadeau et footer.
+police Niconne). Sections : **programme** de la soirée, **lieu** (Beit Andromeda),
+**hébergement** (quartiers de Tel Aviv-Jaffa), **infos pratiques** (transport,
+ETA-IL, climat/tenue), **confirmation de présence**, **page cadeau** et footer.
+
+Contenu repris du _Guide pratique du mariage_ (Adrien & Alina, 5 octobre 2026).
 
 - **Multilingue** : FR / EN / HE (RTL) / RU — détection auto du navigateur
 - **Backend** : utilise **le même Google Sheet** que le save-the-date.
   Le formulaire poste vers `APPS_SCRIPT_URL` et remplit `Sheet1` (colonnes A→N).
 - **Musique**, **compte à rebours**, **carte + Waze/Google Maps**.
+- **Coordonnées bancaires** (Europe + Israël) déjà renseignées dans `cadeau.html`.
 
 ## Fichiers
 
-| Fichier | Rôle |
-|---|---|
-| `index.html` | Page principale (hero, cérémonie, hébergement, RSVP, cadeau, footer) |
-| `cadeau.html` | Page « Participation au cadeau » (coordonnées bancaires) |
-| `apps-script.js` | Backend Google Apps Script (identique au save-the-date) |
-| `music.mp3` | Musique de fond |
+| Fichier          | Rôle                                                                 |
+| ---------------- | -------------------------------------------------------------------- |
+| `index.html`     | Page principale (hero, cérémonie, hébergement, RSVP, cadeau, footer) |
+| `cadeau.html`    | Page « Participation au cadeau » (coordonnées bancaires)             |
+| `apps-script.js` | Backend Google Apps Script (identique au save-the-date)              |
+| `music.mp3`      | Musique de fond                                                      |
 
-## ✏️ À compléter avant publication
+## ✏️ Optionnel
 
-Cherche `[À COMPLÉTER]` dans `index.html` et `cadeau.html` :
+Tout est déjà renseigné (lieu, programme, quartiers, contacts, coordonnées
+bancaires). Si besoin :
 
-- **Hôtels / locations** recommandés (section Hébergement, `index.html`)
-- **Contacts** et **réseaux sociaux** (footer, `index.html`)
-- **Coordonnées bancaires** : bénéficiaire, IBAN, BIC/SWIFT, banque (`cadeau.html`)
-
-Le formulaire RSVP est déjà branché sur votre Sheet existant — rien à changer
-côté backend (sauf si vous redéployez l'Apps Script : mettez à jour `APPS_SCRIPT_URL`
-dans `index.html`).
+- Ajouter vos **réseaux sociaux** (Instagram…) dans le footer de `index.html`.
+- Le formulaire RSVP est déjà branché sur votre Sheet existant — rien à changer
+  côté backend (sauf si vous redéployez l'Apps Script : mettez à jour
+  `APPS_SCRIPT_URL` dans `index.html`).
 
 ## 🚀 Publier comme nouveau repo GitHub Pages
 
