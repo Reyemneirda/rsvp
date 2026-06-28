@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadeau de mariage — Adrien & Alina</title>
+    <meta name="robots" content="noindex" />
+
+    <!--
+      Page "Participation au cadeau de mariage".
+      ✏️  À COMPLÉTER : remplace les [À COMPLÉTER] par vos vraies
+          coordonnées bancaires (IBAN, BIC, bénéficiaire, banque…).
+    -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Niconne&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Josefin+Sans:wght@300;400;500&family=Frank+Ruhl+Libre:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #253a53;
+        --navy-deep: #1c2d40;
+        --cream: #f2ddc9;
+        --cream-bright: #fbe0c5;
+        --cream-muted: rgba(242, 221, 201, 0.82);
+        --line: rgba(242, 221, 201, 0.22);
+        --font-script: "Niconne", cursive;
+        --font-display: "Cormorant Garamond", serif;
+        --font-body: "Josefin Sans", sans-serif;
+      }
+      [dir="rtl"] {
+        --font-display: "Frank Ruhl Libre", serif;
+        --font-body: "Frank Ruhl Libre", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--font-body);
+        color: var(--cream);
+        background-color: var(--navy);
+        background-image:
+          radial-gradient(ellipse at 20% 0%, rgba(45,70,101,0.7) 0%, transparent 55%),
+          radial-gradient(ellipse at 80% 100%, rgba(45,70,101,0.6) 0%, transparent 55%);
+        background-attachment: fixed;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .top-bar {
+        position: fixed; top: 1rem; right: 1.2rem; z-index: 200;
+        display: flex; gap: 0.3rem;
+      }
+      [dir="rtl"] .top-bar { right: auto; left: 1.2rem; }
+      .lang-btn {
+        background: rgba(242,221,201,0.12);
+        border: 1px solid var(--line);
+        padding: 0.3rem 0.55rem;
+        font-family: var(--font-body); font-size: 0.62rem;
+        letter-spacing: 0.05em; color: var(--cream);
+        cursor: pointer; border-radius: 6px; transition: all 0.3s ease;
+      }
+      .lang-btn:hover, .lang-btn.active { background: var(--cream); color: var(--navy); }
+
+      main { flex: 1; padding: 7rem 1.5rem 4rem; }
+      .wrap { max-width: 640px; margin: 0 auto; }
+
+      .back-link {
+        display: inline-block;
+        font-family: var(--font-body);
+        font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+        color: var(--cream-muted); text-decoration: none; margin-bottom: 2rem;
+      }
+      .back-link:hover { color: var(--cream); }
+
+      h1 {
+        font-family: var(--font-script);
+        font-size: clamp(2.8rem, 9vw, 4.2rem);
+        text-align: center; line-height: 1.05; margin-bottom: 1rem;
+      }
+      .intro {
+        font-family: var(--font-display);
+        font-size: 1.15rem; line-height: 1.8;
+        color: var(--cream-muted); text-align: center; margin-bottom: 2.5rem;
+      }
+      .divider { display: flex; align-items: center; gap: 1rem; margin: 2rem auto; max-width: 220px; }
+      .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+      .divider span { color: var(--cream); }
+
+      .bank-card {
+        background: rgba(242,221,201,0.06);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 2rem 1.8rem;
+        margin-bottom: 1.5rem;
+      }
+      .bank-card h2 {
+        font-family: var(--font-script);
+        font-size: 2rem; color: var(--cream-bright); margin-bottom: 1.2rem;
+      }
+      .bank-row {
+        display: flex; justify-content: space-between; gap: 1rem;
+        font-family: var(--font-display); font-size: 1.08rem;
+        padding: 0.55rem 0; border-bottom: 1px solid rgba(242,221,201,0.1);
+      }
+      .bank-row:last-child { border-bottom: none; }
+      .bank-row .k { color: var(--cream-muted); font-weight: 500; flex-shrink: 0; }
+      .bank-row .v { color: var(--cream); text-align: right; word-break: break-word; }
+
+      .thanks {
+        text-align: center; font-family: var(--font-display);
+        font-style: italic; font-size: 1.3rem; color: var(--cream-bright);
+        margin-top: 2.5rem;
+      }
+
+      footer {
+        background: var(--navy-deep); padding: 2.5rem 1.5rem;
+        text-align: center;
+      }
+      .footer-credit {
+        font-family: var(--font-body); font-size: 0.65rem;
+        letter-spacing: 0.1em; color: rgba(242,221,201,0.45);
+      }
+
+      @media (max-width: 600px) {
+        .bank-row { flex-direction: column; gap: 0.15rem; }
+        .bank-row .v { text-align: left; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="he" onclick="setLang('he')">עב</button>
+      <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">РУ</button>
+    </div>
+
+    <main>
+      <div class="wrap">
+        <a class="back-link" href="index.html" data-i18n="back">← Retour</a>
+        <h1 data-i18n="title"></h1>
+        <p class="intro" data-i18n="intro"></p>
+        <div class="divider"><span>✦</span></div>
+
+        <!-- ============ VIREMENT EUROPE ============ -->
+        <div class="bank-card">
+          <h2 data-i18n="sepa_eu"></h2>
+          <div class="bank-row"><span class="k" data-i18n="k_beneficiary"></span><span class="v">[À COMPLÉTER]</span></div>
+          <div class="bank-row"><span class="k">IBAN</span><span class="v">[À COMPLÉTER]</span></div>
+          <div class="bank-row"><span class="k">BIC</span><span class="v">[À COMPLÉTER]</span></div>
+          <div class="bank-row"><span class="k" data-i18n="k_bank"></span><span class="v">[À COMPLÉTER]</span></div>
+          <div class="bank-row"><span class="k" data-i18n="k_ref"></span><span class="v" data-i18n="v_ref"></span></div>
+        </div>
+
+        <!-- ============ VIREMENT ISRAËL ============ -->
+        <div class="bank-card">
+          <h2 data-i18n="sepa_il"></h2>
+          <div class="bank-row"><span class="k" data-i18n="k_beneficiary"></span><span class="v">[À COMPLÉTER]</span></div>
+          <div class="bank-row"><span class="k">IBAN</span><span class="v">[À COMPLÉTER]</span></div>
+          <div class="bank-row"><span class="k">SWIFT</span><span class="v">[À COMPLÉTER]</span></div>
+          <div class="bank-row"><span class="k" data-i18n="k_bank"></span><span class="v">[À COMPLÉTER]</span></div>
+          <div class="bank-row"><span class="k" data-i18n="k_account"></span><span class="v">[À COMPLÉTER]</span></div>
+          <div class="bank-row"><span class="k" data-i18n="k_ref"></span><span class="v" data-i18n="v_ref"></span></div>
+        </div>
+
+        <p class="thanks" data-i18n="thanks"></p>
+      </div>
+    </main>
+
+    <footer>
+      <p class="footer-credit">Adrien & Alina — Tel Aviv 2026</p>
+    </footer>
+
+    <script>
+      const RTL_LANGS = ["he", "ar"];
+      const T = {
+        fr: {
+          back: "← Retour", title: "Participation au cadeau",
+          intro: "Votre présence est notre plus beau cadeau. Si vous souhaitez tout de même contribuer, voici nos coordonnées.",
+          sepa_eu: "Virement (France & Europe)", sepa_il: "Virement (Israël)",
+          k_beneficiary: "Bénéficiaire", k_bank: "Banque", k_account: "N° de compte",
+          k_ref: "Référence", v_ref: "Mariage A&A + votre nom",
+          thanks: "Merci du fond du cœur 💛 Adrien & Alina",
+        },
+        en: {
+          back: "← Back", title: "Wedding gift",
+          intro: "Your presence is the greatest gift. If you'd still like to contribute, here are our details.",
+          sepa_eu: "Transfer (France & Europe)", sepa_il: "Transfer (Israel)",
+          k_beneficiary: "Beneficiary", k_bank: "Bank", k_account: "Account number",
+          k_ref: "Reference", v_ref: "Wedding A&A + your name",
+          thanks: "Thank you from the bottom of our hearts 💛 Adrien & Alina",
+        },
+        he: {
+          back: "→ חזרה", title: "השתתפות במתנה",
+          intro: "הנוכחות שלכם היא המתנה היפה ביותר. אם בכל זאת תרצו לתרום, הנה הפרטים שלנו.",
+          sepa_eu: "העברה (צרפת ואירופה)", sepa_il: "העברה (ישראל)",
+          k_beneficiary: "מוטב", k_bank: "בנק", k_account: "מספר חשבון",
+          k_ref: "אסמכתא", v_ref: "חתונה A&A + שמכם",
+          thanks: "תודה מעומק הלב 💛 אדריאן ואלינה",
+        },
+        ru: {
+          back: "← Назад", title: "Свадебный подарок",
+          intro: "Ваше присутствие — лучший подарок. Если вы всё же хотите внести вклад, вот наши реквизиты.",
+          sepa_eu: "Перевод (Франция и Европа)", sepa_il: "Перевод (Израиль)",
+          k_beneficiary: "Получатель", k_bank: "Банк", k_account: "Номер счёта",
+          k_ref: "Назначение", v_ref: "Свадьба A&A + ваше имя",
+          thanks: "Благодарим вас от всего сердца 💛 Адриан и Алина",
+        },
+      };
+      function detectLang() {
+        const langs = navigator.languages
+          ? navigator.languages.map((l) => l.substring(0, 2))
+          : [navigator.language.substring(0, 2)];
+        for (const l of langs) if (T[l]) return l;
+        return "fr";
+      }
+      function setLang(lang) {
+        const t = T[lang]; if (!t) return;
+        document.documentElement.dir = RTL_LANGS.includes(lang) ? "rtl" : "ltr";
+        document.documentElement.lang = lang;
+        document.documentElement.setAttribute("data-lang", lang);
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const k = el.getAttribute("data-i18n");
+          if (t[k]) el.textContent = t[k];
+        });
+        document.querySelectorAll(".lang-btn").forEach((b) =>
+          b.classList.toggle("active", b.getAttribute("data-lang") === lang)
+        );
+      }
+      setLang(detectLang());
+    </script>
+  </body>
+</html>
