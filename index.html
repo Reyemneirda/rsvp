@@ -190,6 +190,24 @@
         0%, 100% { transform: rotate(45deg) translateY(0); opacity: 1; }
         50% { transform: rotate(45deg) translateY(7px); opacity: 0.5; }
       }
+      .hero-actions {
+        display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem;
+        margin-top: 2.4rem;
+        animation: fadeUp 1s ease-out 1s both;
+      }
+      .hero-btn {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        padding: 0.95rem 2.2rem;
+        font-family: var(--font-body); font-size: 0.72rem;
+        letter-spacing: 0.22em; text-transform: uppercase;
+        text-decoration: none; border-radius: 8px;
+        transition: transform 0.25s ease, background 0.25s ease;
+      }
+      .hero-btn-solid { color: var(--navy); background: var(--cream); border: 1px solid var(--cream); }
+      .hero-btn-solid:hover { background: var(--cream-bright); transform: translateY(-3px); }
+      .hero-btn-ghost { color: var(--cream); background: transparent; border: 1px solid var(--cream); }
+      .hero-btn-ghost:hover { background: var(--cream); color: var(--navy); transform: translateY(-3px); }
+      .scroll-hint span { max-width: 260px; text-align: center; line-height: 1.7; }
 
       /* ============== PROGRAMME (timeline) ============== */
       .timeline {
@@ -434,6 +452,10 @@
       <p class="hero-date" data-i18n="date"></p>
       <p class="hero-venue" data-i18n="venue"></p>
       <div class="countdown" id="countdown"></div>
+      <div class="hero-actions">
+        <a class="hero-btn hero-btn-ghost" href="#program" data-i18n="hero_guide_btn"></a>
+        <a class="hero-btn hero-btn-solid" href="cadeau.html" data-i18n="hero_gift_btn"></a>
+      </div>
       <div class="scroll-hint" onclick="document.getElementById('program').scrollIntoView({behavior:'smooth'})">
         <span data-i18n="scroll"></span>
         <div class="scroll-arrow"></div>
@@ -700,7 +722,9 @@
           name1: "Adrien", name2: "Alina",
           hero_eyebrow: "Les familles Meyer / Krief et Fooks ont la joie de vous convier au mariage de",
           date: "Lundi 5 Octobre 2026", venue: "Beit Andromeda, Jaffa · Tel Aviv-Jaffa",
-          scroll: "Découvrir",
+          scroll: "Faites défiler pour le guide pratique & les infos",
+          hero_guide_btn: "Guide pratique & infos",
+          hero_gift_btn: "Participer au cadeau",
           // Programme
           program_eyebrow: "Le déroulé de la soirée",
           program_title: "Programme",
@@ -780,7 +804,9 @@
           name1: "Adrien", name2: "Alina",
           hero_eyebrow: "The Meyer / Krief and Fooks families are delighted to invite you to the wedding of",
           date: "Monday, October 5, 2026", venue: "Beit Andromeda, Jaffa · Tel Aviv-Jaffa",
-          scroll: "Discover",
+          scroll: "Scroll for the practical guide & info",
+          hero_guide_btn: "Practical guide & info",
+          hero_gift_btn: "Contribute to the gift",
           program_eyebrow: "How the evening unfolds",
           program_title: "Schedule",
           program_intro: "Israeli weddings start early and get going from the very first minutes. Please arrive on time so you don't miss a thing.",
@@ -853,7 +879,9 @@
           name1: "אדריאן", name2: "אלינה",
           hero_eyebrow: "משפחות מאייר / קריף ופוקס שמחות להזמינכם לחתונה של",
           date: "יום שני, 5 באוקטובר 2026", venue: "בית אנדרומדה, יפו · תל אביב-יפו",
-          scroll: "לגלות",
+          scroll: "גללו למדריך המעשי ולמידע",
+          hero_guide_btn: "מדריך מעשי ומידע",
+          hero_gift_btn: "להשתתף במתנה",
           program_eyebrow: "מהלך הערב",
           program_title: "לוח הזמנים",
           program_intro: "חתונות בישראל מתחילות מוקדם ותופסות תאוצה מהרגע הראשון. אנא הגיעו בזמן כדי לא לפספס.",
@@ -926,7 +954,9 @@
           name1: "Адриан", name2: "Алина",
           hero_eyebrow: "Семьи Мейер / Криф и Фукс рады пригласить вас на свадьбу",
           date: "Понедельник, 5 октября 2026", venue: "Бейт Андромеда, Яффо · Тель-Авив-Яффо",
-          scroll: "Подробнее",
+          scroll: "Листайте к практическому гиду и информации",
+          hero_guide_btn: "Практический гид и инфо",
+          hero_gift_btn: "Подарок молодожёнам",
           program_eyebrow: "Как пройдёт вечер",
           program_title: "Программа",
           program_intro: "Свадьбы в Израиле начинаются рано и набирают темп с первых минут. Пожалуйста, приходите вовремя.",
