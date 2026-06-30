@@ -358,6 +358,8 @@
       }
       #comes-details { transition: opacity 0.3s ease, max-height 0.3s ease; overflow: hidden; }
       #comes-details.hidden { opacity: 0; max-height: 0; margin: 0; pointer-events: none; }
+      .yn-count { margin-top: 0.8rem; }
+      .yn-count.hidden { display: none; }
       .btn-primary {
         display: inline-block; margin-top: 0.6rem; padding: 0.95rem 3rem;
         font-family: var(--font-body); font-size: 0.72rem;
@@ -632,10 +634,19 @@
 
             <div id="comes-details" class="hidden">
               <div class="form-group">
+                <label class="form-label" data-i18n="label_email"></label>
+                <input class="form-input" type="email" id="field-email" />
+              </div>
+
+              <div class="form-group">
                 <label class="form-label" data-i18n="label_plusone"></label>
                 <div class="comes-toggle">
                   <button type="button" class="comes-btn" id="plusone-yes" onclick="setYN('plusone', true)" data-i18n="yn_yes"></button>
                   <button type="button" class="comes-btn" id="plusone-no" onclick="setYN('plusone', false)" data-i18n="yn_no"></button>
+                </div>
+                <div class="yn-count hidden" id="plusone-count-wrap">
+                  <label class="form-label" data-i18n="label_count"></label>
+                  <input class="form-input" type="number" min="1" max="20" id="field-plusone-count" />
                 </div>
               </div>
 
@@ -644,6 +655,10 @@
                 <div class="comes-toggle">
                   <button type="button" class="comes-btn" id="children-yes" onclick="setYN('children', true)" data-i18n="yn_yes"></button>
                   <button type="button" class="comes-btn" id="children-no" onclick="setYN('children', false)" data-i18n="yn_no"></button>
+                </div>
+                <div class="yn-count hidden" id="children-count-wrap">
+                  <label class="form-label" data-i18n="label_count"></label>
+                  <input class="form-input" type="number" min="1" max="20" id="field-children-count" />
                 </div>
               </div>
 
@@ -779,6 +794,7 @@
           form_title: "RSVP",
           form_subtitle: "Merci de nous dire si vous serez des nôtres, et de remplir le formulaire ci-dessous.",
           label_firstName: "Prénom", label_lastName: "Nom de famille",
+          label_email: "Email (optionnel)", label_count: "Combien ? (optionnel)",
           label_comes: "Serez-vous présent(e) ?",
           comes_yes: "✓ Oui, je serai là !", comes_no: "✗ Non, je ne pourrai pas venir",
           comes_hint: "Merci de choisir une option ci-dessus.",
@@ -857,6 +873,7 @@
           form_title: "RSVP",
           form_subtitle: "Please let us know whether you'll be joining us by filling in the form below.",
           label_firstName: "First name", label_lastName: "Last name",
+          label_email: "Email (optional)", label_count: "How many? (optional)",
           label_comes: "Will you be attending?",
           comes_yes: "✓ Yes, I'll be there!", comes_no: "✗ No, I can't make it",
           comes_hint: "Please choose an option above.",
@@ -933,6 +950,7 @@
           form_title: "אישור הגעה",
           form_subtitle: "אנא הודיעו לנו אם תצטרפו אלינו, ומלאו את הטופס שלמטה.",
           label_firstName: "שם פרטי", label_lastName: "שם משפחה",
+          label_email: "(אימייל (לא חובה", label_count: "(כמה? (לא חובה",
           label_comes: "?האם תגיעו",
           comes_yes: "✓ כן, אגיע!", comes_no: "✗ לא, לא אוכל להגיע",
           comes_hint: "אנא בחרו אפשרות למעלה.",
@@ -1009,6 +1027,7 @@
           form_title: "RSVP",
           form_subtitle: "Пожалуйста, сообщите, сможете ли вы приехать к нам на свадьбу, заполнив форму ниже.",
           label_firstName: "Имя", label_lastName: "Фамилия",
+          label_email: "Email (необязательно)", label_count: "Сколько? (необязательно)",
           label_comes: "Вы придёте?",
           comes_yes: "✓ Да, буду!", comes_no: "✗ Нет, не смогу прийти",
           comes_hint: "Пожалуйста, выберите вариант выше.",
@@ -1134,6 +1153,8 @@
         const no = document.getElementById(key + "-no");
         if (yes) yes.classList.toggle("active", val === true);
         if (no) no.classList.toggle("active", val === false);
+        const countWrap = document.getElementById(key + "-count-wrap");
+        if (countWrap) countWrap.classList.toggle("hidden", val !== true);
       }
 
       /* ---------- Pré-remplissage ---------- */
@@ -1149,10 +1170,17 @@
         const firstName = document.getElementById("field-firstName").value.trim();
         const lastName = document.getElementById("field-lastName").value.trim();
         const comes = comesValue;
+        const email = comes ? document.getElementById("field-email").value.trim() : "";
         const plusOne = comes ? ynState.plusone : false;
         const children = comes ? ynState.children : false;
         const parking = comes ? ynState.parking : false;
-        const guests = plusOne ? 1 : 0;
+        const plusOneCount = plusOne
+          ? parseInt(document.getElementById("field-plusone-count").value, 10) || 0
+          : 0;
+        const childrenCount = children
+          ? parseInt(document.getElementById("field-children-count").value, 10) || 0
+          : 0;
+        const guests = plusOne ? (plusOneCount > 0 ? plusOneCount : 1) : 0;
         const notes = document.getElementById("field-notes").value.trim();
 
         if (!firstName || !lastName) {
@@ -1171,8 +1199,8 @@
         status.className = "form-status sending";
 
         const payload = {
-          firstName, lastName, comes, plusOne, children, parking,
-          guests, notes, message: notes,
+          firstName, lastName, comes, email, plusOne, children, parking,
+          plusOneCount, childrenCount, guests, notes, message: notes,
           lang: currentLang, phone: prefillPhone, tg: prefillTg,
         };
 
@@ -1238,8 +1266,10 @@
           if (data.found) {
             const fn = document.getElementById("field-firstName");
             const ln = document.getElementById("field-lastName");
+            const em = document.getElementById("field-email");
             if (fn) fn.value = data.firstName || "";
             if (ln) ln.value = data.lastName || "";
+            if (em) em.value = data.email || "";
           }
         } catch (err) {
           console.warn("Prefill échoué:", err);

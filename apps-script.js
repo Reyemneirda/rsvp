@@ -6,19 +6,20 @@
  *  COLONNES DU SHEET :
  *  A(1):  First Name
  *  B(2):  Last Name
- *  C(3):  Guests            ← accompagnant·e = 1, sinon 0
+ *  C(3):  Guests            ← nombre d'accompagnant·e·s (0, 1, 2…)
  *  D(4):  Phone Number
  *  E(5):  Telegram username
  *  F(6):  Comes ?            ← checkbox (true/false)
  *  G(7):  Parking lot        ← checkbox (true/false)
  *  H(8):  Email
  *  I(9):  Statut RSVP
- *  J(10): Total              ← formule =IF(F,1+C,0)
+ *  J(10): Total              ← formule =IF(F,1+C+P,0)
  *  K(11): Restrictions
  *  L(12): Message / Notes
  *  M(13): Date de réponse
  *  N(14): lang
- *  O(15): Enfants ?          ← checkbox (true/false) — NOUVELLE COLONNE
+ *  O(15): Enfants ?          ← checkbox (true/false)
+ *  P(16): Nb enfants         ← nombre d'enfants (0, 1, 2…) — NOUVELLE COLONNE
  *
  *  ⚠️ Les nouvelles réponses sont insérées AVANT la ligne « Total »
  *     (résumé en bas de feuille), jamais après.
@@ -151,12 +152,15 @@ function doPost(e) {
   var dataTg    = String(data.tg || "").trim().toLowerCase().replace(/^@/, "");
 
   function asBool(v) { return v === true || v === "true"; }
+  function asCount(v) { var n = Number(v); return n > 0 ? Math.floor(n) : 0; }
   var comes    = asBool(data.comes);
-  var plusOne  = asBool(data.plusOne);
+  var plusOne  = comes && asBool(data.plusOne);
   var children = comes && asBool(data.children);
   var parking  = comes && asBool(data.parking);
-  // "guests" = nombre d'accompagnant·e·s en plus de l'invité (0 ou 1)
-  var guests   = comes && (plusOne || Number(data.guests) > 0) ? 1 : 0;
+  // Nombre d'accompagnant·e·s : valeur saisie, sinon 1 si « oui », sinon 0
+  var guests   = plusOne ? (asCount(data.plusOneCount) || asCount(data.guests) || 1) : 0;
+  // Nombre d'enfants : valeur saisie, sinon 1 si « oui », sinon 0
+  var nbKids   = children ? (asCount(data.childrenCount) || 1) : 0;
   var notes    = data.notes || data.message || "";
   var statut   = comes ? "Confirmed" : "Declined";
 
@@ -221,17 +225,19 @@ function doPost(e) {
   // Champs communs (création ET mise à jour)
   sheet.getRange(row, 1).setValue(data.firstName);                 // A: First Name
   sheet.getRange(row, 2).setValue(data.lastName);                  // B: Last Name
-  sheet.getRange(row, 3).setValue(guests);                         // C: Guests
+  sheet.getRange(row, 3).setValue(guests);                         // C: Guests (accompagnants)
   sheet.getRange(row, 6).setValue(comes);                          // F: Comes? (checkbox)
   sheet.getRange(row, 7).setValue(parking);                        // G: Parking (checkbox)
+  if (data.email) sheet.getRange(row, 8).setValue(data.email);     // H: Email (si fourni)
   sheet.getRange(row, 9).setValue(statut);                         // I: Statut RSVP
   sheet.getRange(row, 10).setFormula(                              // J: Total (formule)
-    "=IF(F" + row + "=TRUE, 1+C" + row + ", 0)");
+    "=IF(F" + row + "=TRUE, 1+C" + row + "+P" + row + ", 0)");
   sheet.getRange(row, 12).setValue(notes);                         // L: Message / Notes
   sheet.getRange(row, 13).setValue(new Date());                    // M: Date de réponse
   sheet.getRange(row, 14).setValue(data.lang || "");               // N: lang
   sheet.getRange(row, 15).setValue(children);                      // O: Enfants? (checkbox)
-  // D/E/H/K ne sont pas écrasés lors d'une mise à jour.
+  sheet.getRange(row, 16).setValue(nbKids);                        // P: Nb enfants
+  // D/E/K ne sont pas écrasés lors d'une mise à jour ; H seulement si fourni.
 
   return ContentService
     .createTextOutput(JSON.stringify({ result: "ok", found: found }))
