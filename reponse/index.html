@@ -1,9 +1,10 @@
 <!doctype html>
+<!-- ⚠️ FICHIER GÉNÉRÉ par build-reponse.js — ne pas éditer à la main. -->
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mariage Adrien & Alina</title>
+    <title>RSVP — Mariage Adrien & Alina</title>
     <meta name="robots" content="noindex" />
     <meta property="og:title" content="Mariage Adrien & Alina — 5 octobre 2026" />
     <meta property="og:type" content="website" />
@@ -433,6 +434,8 @@
         [dir="rtl"] .tl-item { grid-template-columns: 1fr 70px; }
         .tl-time { font-size: 1.4rem; }
       }
+          .hero { min-height: auto !important; padding-bottom: 2.5rem; }
+      .hero-venue { margin-bottom: 0.5rem; }
     </style>
   </head>
   <body>
@@ -446,7 +449,7 @@
         <button class="lang-btn" data-lang="ru" onclick="setLang('ru')">РУ</button>
       </nav>
     </div>
-    <audio id="bg-music" src="music.mp3" loop preload="auto"></audio>
+    <audio id="bg-music" src="../music.mp3" loop preload="auto"></audio>
 
     <!-- ============================ HERO ============================ -->
     <section class="hero" id="hero">
@@ -455,155 +458,8 @@
       <p class="hero-date" data-i18n="date"></p>
       <p class="hero-venue" data-i18n="venue"></p>
       <div class="countdown" id="countdown"></div>
-      <div class="hero-actions">
-        <a class="hero-btn hero-btn-ghost" href="#program" data-i18n="hero_guide_btn"></a>
-        <a class="hero-btn hero-btn-solid" href="cadeau.html" data-i18n="hero_gift_btn"></a>
-      </div>
-      <div class="scroll-hint" onclick="document.getElementById('program').scrollIntoView({behavior:'smooth'})">
-        <span data-i18n="scroll"></span>
-        <div class="scroll-arrow"></div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ========================= PROGRAMME ========================== -->
-    <section id="program" class="section-alt">
-      <div class="wrap-narrow reveal">
-        <p class="eyebrow" data-i18n="program_eyebrow"></p>
-        <h2 class="h-section" data-i18n="program_title"></h2>
-        <p class="lede" data-i18n="program_intro"></p>
-        <div class="divider"><span>✦</span></div>
-
-        <div class="timeline">
-          <div class="tl-item">
-            <div class="tl-time">17h30</div>
-            <div><div class="tl-title" data-i18n="prog_1_t"></div><div class="tl-desc" data-i18n="prog_1_d"></div></div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-time">18h30</div>
-            <div><div class="tl-title" data-i18n="prog_2_t"></div><div class="tl-desc" data-i18n="prog_2_d"></div></div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-time">19h15</div>
-            <div><div class="tl-title" data-i18n="prog_3_t"></div><div class="tl-desc" data-i18n="prog_3_d"></div></div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-time">20h30</div>
-            <div><div class="tl-title" data-i18n="prog_4_t"></div><div class="tl-desc" data-i18n="prog_4_d"></div></div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-time">00h30</div>
-            <div><div class="tl-title" data-i18n="prog_5_t"></div><div class="tl-desc" data-i18n="prog_5_d"></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================== LIEU ============================ -->
-    <section id="venue">
-      <div class="wrap reveal">
-        <p class="eyebrow" data-i18n="venue_eyebrow"></p>
-        <h2 class="h-section" data-i18n="venue_title"></h2>
-        <div class="divider"><span>✦</span></div>
-
-        <div class="venue-grid">
-          <div class="venue-text">
-            <p data-i18n="venue_text"></p>
-            <div class="bullet">
-              <span class="ic">📍</span>
-              <span><a href="https://maps.app.goo.gl/w4T8jLC897ukvtBV8" target="_blank" rel="noopener noreferrer" data-i18n="venue_address"></a></span>
-            </div>
-            <div class="bullet">
-              <span class="ic">🚕</span>
-              <span data-i18n="venue_access"></span>
-            </div>
-            <div class="bullet">
-              <span class="ic">🅿️</span>
-              <span data-i18n="venue_parking"></span>
-            </div>
-            <div class="nav-buttons">
-              <a class="nav-btn" href="https://waze.com/ul?ll=32.05390,34.75458&navigate=yes&zoom=17" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 2 3 5.6 3 10c0 2 .8 3.9 2.2 5.3L3.2 18.2c-.15.3.15.6.45.45l3-1.5C8.2 18 10 18.5 12 18.5c5 0 9-3.6 9-8.5C21 5.6 17 2 12 2z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="9" cy="9.5" r="1.2"/><circle cx="15" cy="9.5" r="1.2"/></svg>
-                Waze
-              </a>
-              <a class="nav-btn" href="https://maps.app.goo.gl/w4T8jLC897ukvtBV8" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
-                Maps
-              </a>
-            </div>
-          </div>
-          <div class="map-frame">
-            <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=34.7505%2C32.0499%2C34.7585%2C32.0579&amp;layer=mapnik&amp;marker=32.05390%2C34.75458"
-              loading="lazy" referrerpolicy="no-referrer" title="Beit Andromeda, Jaffa"
-            ></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======================= HÉBERGEMENT ========================= -->
-    <section id="lodging" class="section-alt">
-      <div class="wrap reveal">
-        <p class="eyebrow" data-i18n="lodging_eyebrow"></p>
-        <h2 class="h-section" data-i18n="lodging_title"></h2>
-        <p class="lede" data-i18n="lodging_intro"></p>
-        <div class="divider"><span>✦</span></div>
-
-        <div class="area-grid">
-          <div class="area-card">
-            <h3>Jaffa (Yafo)</h3>
-            <p class="area-dist" data-i18n="nb_jaffa_dist"></p>
-            <p data-i18n="nb_jaffa_d"></p>
-          </div>
-          <div class="area-card">
-            <h3>Neve Tsedek</h3>
-            <p class="area-dist" data-i18n="nb_neve_dist"></p>
-            <p data-i18n="nb_neve_d"></p>
-          </div>
-          <div class="area-card">
-            <h3>Florentin</h3>
-            <p class="area-dist" data-i18n="nb_flo_dist"></p>
-            <p data-i18n="nb_flo_d"></p>
-          </div>
-          <div class="area-card">
-            <h3 data-i18n="nb_centre_n"></h3>
-            <p class="area-dist" data-i18n="nb_centre_dist"></p>
-            <p data-i18n="nb_centre_d"></p>
-          </div>
-        </div>
-        <p class="area-note" data-i18n="lodging_note"></p>
-      </div>
-    </section>
-
-    <!-- ===================== INFOS PRATIQUES ======================= -->
-    <section id="tips">
-      <div class="wrap reveal">
-        <p class="eyebrow" data-i18n="tips_eyebrow"></p>
-        <h2 class="h-section" data-i18n="tips_title"></h2>
-        <div class="divider"><span>✦</span></div>
-
-        <div class="tips-grid">
-          <div class="tip">
-            <span class="tip-ic">✈️</span>
-            <div><h4 data-i18n="tip_travel_t"></h4><p data-i18n="tip_travel_d"></p></div>
-          </div>
-          <div class="tip">
-            <span class="tip-ic">💳</span>
-            <div><h4 data-i18n="tip_money_t"></h4><p data-i18n="tip_money_d"></p></div>
-          </div>
-          <div class="tip">
-            <span class="tip-ic">☀️</span>
-            <div><h4 data-i18n="tip_dress_t"></h4><p data-i18n="tip_dress_d"></p></div>
-          </div>
-          <div class="tip">
-            <span class="tip-ic">🛂</span>
-            <div><h4 data-i18n="tip_visa_t"></h4><p data-i18n="tip_visa_d"></p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================== RSVP ============================= -->
     <section id="rsvp" class="section-alt">
       <div class="wrap-narrow reveal">
         <p class="eyebrow" data-i18n="form_eyebrow"></p>
@@ -688,24 +544,13 @@
             <p class="success-text" data-i18n="success_title"></p>
             <p class="success-sub" data-i18n="success_sub"></p>
             <div class="success-actions">
-              <a class="hero-btn hero-btn-solid" href="cadeau.html" data-i18n="hero_gift_btn"></a>
+              <a class="hero-btn hero-btn-solid" href="../cadeau.html" data-i18n="hero_gift_btn"></a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========================== CADEAU =========================== -->
-    <section id="gift">
-      <div class="wrap-narrow reveal gift-cta">
-        <p class="eyebrow" data-i18n="gift_eyebrow"></p>
-        <h2 class="h-section" data-i18n="gift_title"></h2>
-        <p class="lede" data-i18n="gift_text"></p>
-        <a class="btn-outline" href="cadeau.html" data-i18n="gift_btn"></a>
-      </div>
-    </section>
-
-    <!-- ========================== FOOTER =========================== -->
     <footer>
       <div class="footer-grid reveal">
         <div>

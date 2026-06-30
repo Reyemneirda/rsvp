@@ -15,12 +15,19 @@ Contenu repris du _Guide pratique du mariage_ (Adrien & Alina, 5 octobre 2026).
 
 ## Fichiers
 
-| Fichier          | Rôle                                                                 |
-| ---------------- | -------------------------------------------------------------------- |
-| `index.html`     | Page principale (hero, cérémonie, hébergement, RSVP, cadeau, footer) |
-| `cadeau.html`    | Page « Participation au cadeau » (coordonnées bancaires)             |
-| `apps-script.js` | Backend Google Apps Script (identique au save-the-date)              |
-| `music.mp3`      | Musique de fond                                                      |
+| Fichier              | Rôle                                                                 |
+| -------------------- | -------------------------------------------------------------------- |
+| `index.html`         | Page principale (hero, cérémonie, hébergement, RSVP, cadeau, footer) |
+| `reponse/index.html` | **Page RSVP autonome** (formulaire seul) → `…/rsvp/reponse/`. _Générée_ |
+| `build-reponse.js`   | Génère `reponse/index.html` depuis `index.html` (`node build-reponse.js`) |
+| `cadeau.html`        | Page « Participation au cadeau » (coordonnées bancaires)             |
+| `apps-script.js`     | Backend Google Apps Script (identique au save-the-date)              |
+| `music.mp3`          | Musique de fond                                                      |
+
+> **Lien RSVP direct** (à envoyer par SMS) : `https://reyemneirda.github.io/rsvp/reponse/`
+> Cette page ne contient que le formulaire (le guide est sur l'accueil).
+> ⚠️ `reponse/index.html` est **généré** : après toute modif du formulaire dans
+> `index.html`, relancer `node build-reponse.js`.
 
 ## ✏️ Optionnel
 
