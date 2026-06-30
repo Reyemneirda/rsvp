@@ -53,8 +53,18 @@ html = html
 // 6) Hero compact (pas de plein écran : le formulaire doit être visible vite).
 html = html.replace(
   "</style>",
-  "      .hero { min-height: auto !important; padding-bottom: 2.5rem; }\n" +
-  "      .hero-venue { margin-bottom: 0.5rem; }\n    </style>"
+  [
+    "      /* Page /reponse/ : hero réduit pour donner la priorité au formulaire */",
+    "      .hero { min-height: auto !important; padding-top: 5rem; padding-bottom: 1.2rem; }",
+    "      .hero-eyebrow { font-size: 0.62rem; margin-bottom: 0.9rem; }",
+    "      .hero-names { font-size: clamp(2.2rem, 7vw, 3.2rem); }",
+    "      .hero-names .amp { font-size: 0.45em; margin: 0.02em 0; }",
+    "      .hero-date { margin-top: 0.9rem; font-size: 0.9rem; }",
+    "      .hero-venue { margin-top: 0.35rem; font-size: 1rem; margin-bottom: 0; }",
+    "      .countdown { display: none; }",
+    "      #rsvp { padding-top: 1.5rem; }",
+    "    </style>",
+  ].join("\n")
 );
 
 // 7) Titre + bannière de tête.
