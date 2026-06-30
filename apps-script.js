@@ -6,18 +6,22 @@
  *  COLONNES DU SHEET :
  *  A(1):  First Name
  *  B(2):  Last Name
- *  C(3):  Guests
+ *  C(3):  Guests            ← accompagnant·e = 1, sinon 0
  *  D(4):  Phone Number
  *  E(5):  Telegram username
  *  F(6):  Comes ?            ← checkbox (true/false)
  *  G(7):  Parking lot        ← checkbox (true/false)
  *  H(8):  Email
  *  I(9):  Statut RSVP
- *  J(10): Total              ← formule, ne pas toucher
+ *  J(10): Total              ← formule =IF(F,1+C,0)
  *  K(11): Restrictions
- *  L(12): Message
+ *  L(12): Message / Notes
  *  M(13): Date de réponse
  *  N(14): lang
+ *  O(15): Enfants ?          ← checkbox (true/false) — NOUVELLE COLONNE
+ *
+ *  ⚠️ Les nouvelles réponses sont insérées AVANT la ligne « Total »
+ *     (résumé en bas de feuille), jamais après.
  *
  *  FONCTIONS :
  *  doGet  → Recherche par téléphone (?p=) ou Telegram (?t=)
@@ -99,6 +103,18 @@ function doGet(e) {
 
 
 /**
+ * Trouve l'index (1-based) de la ligne de résumé « Total » (col A = "Total").
+ * Recherche depuis le bas. Retourne -1 si absente.
+ */
+function findTotalRow(rows) {
+  for (var i = rows.length - 1; i >= 1; i--) {
+    if (normalizeName(rows[i][0]) === "total") return i + 1;
+  }
+  return -1;
+}
+
+
+/**
  * doPost — Enregistre une réponse RSVP.
  *
  * Stratégie de recherche (dans l'ordre) :
@@ -107,13 +123,17 @@ function doGet(e) {
  *   3. Prénom + Nom normalisés (col A + B)
  *
  * → Si trouvé : met à jour la ligne existante.
- * → Sinon    : ajoute une nouvelle ligne en bas.
+ * → Sinon    : insère une nouvelle ligne AVANT la ligne « Total »
+ *              (jamais après le résumé en bas de feuille).
+ *
+ * Champs attendus (nouveau formulaire) :
+ *   comes, plusOne, children, parking (booléens), notes (texte).
  *
  * Le champ "comes" détermine :
  *   - F: true ou false (checkbox)
  *   - I: "Confirmed" ou "Declined" (jamais vide → on distingue
  *        clairement "n'a pas répondu" vs "a refusé" dans le sheet)
- *   - Si false : guests = 0, parking = false
+ *   - Si false : guests = 0, parking = false, children = false
  */
 function doPost(e) {
   var sheet = SpreadsheetApp
@@ -130,8 +150,15 @@ function doPost(e) {
   var dataPhone = normalizePhone(data.phone || "");
   var dataTg    = String(data.tg || "").trim().toLowerCase().replace(/^@/, "");
 
-  var comes  = data.comes === true || data.comes === "true";
-  var statut = comes ? "Confirmed" : "Declined";
+  function asBool(v) { return v === true || v === "true"; }
+  var comes    = asBool(data.comes);
+  var plusOne  = asBool(data.plusOne);
+  var children = comes && asBool(data.children);
+  var parking  = comes && asBool(data.parking);
+  // "guests" = nombre d'accompagnant·e·s en plus de l'invité (0 ou 1)
+  var guests   = comes && (plusOne || Number(data.guests) > 0) ? 1 : 0;
+  var notes    = data.notes || data.message || "";
+  var statut   = comes ? "Confirmed" : "Declined";
 
   // 1) Recherche prioritaire par téléphone ou Telegram (identifiant fort)
   if (dataPhone || dataTg) {
@@ -153,9 +180,10 @@ function doPost(e) {
     }
   }
 
-  // 2) Repli : recherche par Prénom + Nom (normalisés)
+  // 2) Repli : recherche par Prénom + Nom (normalisés) — on ignore la ligne Total
   if (matchedRow === -1) {
     for (var j = 1; j < rows.length; j++) {
+      if (normalizeName(rows[j][0]) === "total") continue;
       var firstName = normalizeName(rows[j][0]);
       var lastName  = normalizeName(rows[j][1]);
 
@@ -166,43 +194,44 @@ function doPost(e) {
     }
   }
 
+  var row;
   if (matchedRow !== -1) {
-    var row = matchedRow + 1;
-
-    // Met à jour aussi A/B au cas où l'invité corrige son nom
-    sheet.getRange(row, 1).setValue(data.firstName);                     // A: First Name
-    sheet.getRange(row, 2).setValue(data.lastName);                      // B: Last Name
-    sheet.getRange(row, 3).setValue(comes ? Number(data.guests) : 0);    // C: Guests
-    // D (Phone) et E (Telegram) ne sont pas modifiés
-    sheet.getRange(row, 6).setValue(comes);                              // F: Comes? (checkbox)
-    sheet.getRange(row, 7).setValue(comes ? !!data.parking : false);     // G: Parking (checkbox)
-    sheet.getRange(row, 8).setValue(data.email);                         // H: Email
-    sheet.getRange(row, 9).setValue(statut);                             // I: Statut RSVP
-    // J(10) = Total → formule, on ne touche pas
-    sheet.getRange(row, 11).setValue(data.restrictions || "");           // K: Restrictions
-    sheet.getRange(row, 12).setValue(data.message || "");                // L: Message
-    sheet.getRange(row, 13).setValue(new Date());                        // M: Date de réponse
-    sheet.getRange(row, 14).setValue(data.lang || "");                   // N: lang
-
+    // Ligne existante : on met à jour sur place.
+    row = matchedRow + 1;
     found = true;
   } else {
-    sheet.appendRow([
-      data.firstName,                        // A
-      data.lastName,                         // B
-      comes ? Number(data.guests) : 0,       // C
-      data.phone || "",                      // D: Phone (utile si nouvelle ligne)
-      data.tg || "",                         // E: Telegram
-      comes,                                 // F: Comes? (checkbox)
-      comes ? !!data.parking : false,        // G: Parking (checkbox)
-      data.email,                            // H: Email
-      statut,                                // I: Statut RSVP
-      "",                                    // J: Total (formule)
-      data.restrictions || "",               // K: Restrictions
-      data.message || "",                    // L: Message
-      new Date(),                            // M: Date de réponse
-      data.lang || ""                        // N: lang
-    ]);
+    // Nouvelle ligne : insérée AVANT la ligne « Total ».
+    // On insère avant la dernière ligne de données (Total - 1) pour rester
+    // dans la plage des formules de résumé (qui s'étendent automatiquement).
+    var totalRow = findTotalRow(rows);
+    if (totalRow > 2) {
+      sheet.insertRowBefore(totalRow - 1);
+      row = totalRow - 1;
+    } else if (totalRow !== -1) {
+      sheet.insertRowBefore(totalRow);
+      row = totalRow;
+    } else {
+      row = sheet.getLastRow() + 1; // pas de ligne Total → ajout en bas
+    }
+    // Identifiants forts (uniquement pour une nouvelle ligne)
+    sheet.getRange(row, 4).setValue(data.phone || ""); // D: Phone
+    sheet.getRange(row, 5).setValue(data.tg || "");    // E: Telegram
   }
+
+  // Champs communs (création ET mise à jour)
+  sheet.getRange(row, 1).setValue(data.firstName);                 // A: First Name
+  sheet.getRange(row, 2).setValue(data.lastName);                  // B: Last Name
+  sheet.getRange(row, 3).setValue(guests);                         // C: Guests
+  sheet.getRange(row, 6).setValue(comes);                          // F: Comes? (checkbox)
+  sheet.getRange(row, 7).setValue(parking);                        // G: Parking (checkbox)
+  sheet.getRange(row, 9).setValue(statut);                         // I: Statut RSVP
+  sheet.getRange(row, 10).setFormula(                              // J: Total (formule)
+    "=IF(F" + row + "=TRUE, 1+C" + row + ", 0)");
+  sheet.getRange(row, 12).setValue(notes);                         // L: Message / Notes
+  sheet.getRange(row, 13).setValue(new Date());                    // M: Date de réponse
+  sheet.getRange(row, 14).setValue(data.lang || "");               // N: lang
+  sheet.getRange(row, 15).setValue(children);                      // O: Enfants? (checkbox)
+  // D/E/H/K ne sont pas écrasés lors d'une mise à jour.
 
   return ContentService
     .createTextOutput(JSON.stringify({ result: "ok", found: found }))

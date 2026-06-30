@@ -631,32 +631,35 @@
             </div>
 
             <div id="comes-details" class="hidden">
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label" data-i18n="label_email"></label>
-                  <input class="form-input" type="email" id="field-email" />
+              <div class="form-group">
+                <label class="form-label" data-i18n="label_plusone"></label>
+                <div class="comes-toggle">
+                  <button type="button" class="comes-btn" id="plusone-yes" onclick="setYN('plusone', true)" data-i18n="yn_yes"></button>
+                  <button type="button" class="comes-btn" id="plusone-no" onclick="setYN('plusone', false)" data-i18n="yn_no"></button>
                 </div>
-                <div class="form-group">
-                  <label class="form-label" data-i18n="label_guests"></label>
-                  <input class="form-input" type="number" id="field-guests" min="0" max="20" value="0" />
-                  <small class="form-hint" data-i18n="hint_guests"></small>
-                </div>
-              </div>
-
-              <div class="checkbox-group">
-                <input class="form-checkbox" type="checkbox" id="field-parking" />
-                <label class="checkbox-label" for="field-parking" data-i18n="label_parking"></label>
               </div>
 
               <div class="form-group">
-                <label class="form-label" data-i18n="label_restrictions"></label>
-                <input class="form-input" type="text" id="field-restrictions" />
+                <label class="form-label" data-i18n="label_children"></label>
+                <div class="comes-toggle">
+                  <button type="button" class="comes-btn" id="children-yes" onclick="setYN('children', true)" data-i18n="yn_yes"></button>
+                  <button type="button" class="comes-btn" id="children-no" onclick="setYN('children', false)" data-i18n="yn_no"></button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" data-i18n="label_parking"></label>
+                <div class="comes-toggle">
+                  <button type="button" class="comes-btn" id="parking-yes" onclick="setYN('parking', true)" data-i18n="yn_yes"></button>
+                  <button type="button" class="comes-btn" id="parking-no" onclick="setYN('parking', false)" data-i18n="yn_no"></button>
+                </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label class="form-label" data-i18n="label_message"></label>
-              <textarea class="form-textarea" id="field-message" rows="3"></textarea>
+              <label class="form-label" data-i18n="label_notes"></label>
+              <textarea class="form-textarea" id="field-notes" rows="3"></textarea>
+              <small class="form-hint" data-i18n="hint_notes"></small>
             </div>
 
             <div style="text-align:center">
@@ -772,18 +775,19 @@
           tip_visa_t: "Formalités",
           tip_visa_d: "Pas de visa pour les Français, mais l'autorisation ETA-IL est obligatoire avant le départ (passeport valide 6 mois).",
           // RSVP
-          form_eyebrow: "On compte sur vous",
-          form_title: "Confirmer votre présence",
-          form_subtitle: "Merci de répondre via le formulaire ci-dessous.",
+          form_eyebrow: "On vous attend avec impatience",
+          form_title: "RSVP",
+          form_subtitle: "Merci de nous dire si vous serez des nôtres, et de remplir le formulaire ci-dessous.",
           label_firstName: "Prénom", label_lastName: "Nom de famille",
-          label_email: "Email", label_guests: "Nombre d'accompagnants",
-          hint_guests: "Personnes en plus de vous (0 si vous venez seul·e)",
-          label_parking: "J'ai besoin d'une place de parking",
-          label_restrictions: "Restrictions alimentaires (optionnel)",
-          label_message: "Un petit mot (optionnel)",
           label_comes: "Serez-vous présent(e) ?",
           comes_yes: "✓ Oui, je serai là !", comes_no: "✗ Non, je ne pourrai pas venir",
           comes_hint: "Merci de choisir une option ci-dessus.",
+          label_plusone: "Viendrez-vous avec un·e accompagnant·e ?",
+          label_children: "Viendrez-vous avec des enfants ?",
+          label_parking: "Avez-vous besoin d'une place de parking ?",
+          label_notes: "Un message à nous laisser ?",
+          hint_notes: "(Optionnel) Indiquez-nous ici toute allergie alimentaire, ou laissez-nous simplement vos vœux les plus chaleureux.",
+          yn_yes: "Oui", yn_no: "Non",
           submit: "Envoyer", sending: "Envoi en cours…",
           success_title: "Merci !",
           success_sub: "Réponse enregistrée. Nous avons hâte de vous voir à Tel Aviv en octobre !",
@@ -849,18 +853,19 @@
           tip_dress_d: "24–30 °C in early October. Smart-casual attire, shoes you can dance in. Please avoid white.",
           tip_visa_t: "Formalities",
           tip_visa_d: "No visa for most EU citizens, but the ETA-IL authorization is required before departure (passport valid 6 months).",
-          form_eyebrow: "We're counting on you",
+          form_eyebrow: "We're waiting for you!",
           form_title: "RSVP",
-          form_subtitle: "Please reply using the form below.",
+          form_subtitle: "Please let us know whether you'll be joining us by filling in the form below.",
           label_firstName: "First name", label_lastName: "Last name",
-          label_email: "Email", label_guests: "Number of additional guests",
-          hint_guests: "People besides yourself (0 if coming alone)",
-          label_parking: "I need a parking spot",
-          label_restrictions: "Dietary restrictions (optional)",
-          label_message: "Want to add a note? (optional)",
           label_comes: "Will you be attending?",
           comes_yes: "✓ Yes, I'll be there!", comes_no: "✗ No, I can't make it",
           comes_hint: "Please choose an option above.",
+          label_plusone: "Will you be bringing a plus-one?",
+          label_children: "Will you be coming with children?",
+          label_parking: "Do you need a parking space?",
+          label_notes: "Any notes?",
+          hint_notes: "(Optional) This is the place to let us know about any food allergies — or simply leave us your warm wishes.",
+          yn_yes: "Yes", yn_no: "No",
           submit: "Submit", sending: "Sending…",
           success_title: "Thank you!",
           success_sub: "Your response has been recorded. We can't wait to see you in Tel Aviv this October!",
@@ -924,18 +929,19 @@
           tip_dress_d: "24–30 מעלות בתחילת אוקטובר. לבוש אלגנטי-נינוח, נעליים לריקודים. אנא הימנעו מלבן.",
           tip_visa_t: "נהלים",
           tip_visa_d: "ללא ויזה לרוב אזרחי אירופה, אך נדרש אישור ETA-IL לפני הנסיעה (דרכון בתוקף 6 חודשים).",
-          form_eyebrow: "אנחנו סומכים עליכם",
+          form_eyebrow: "אנחנו מחכים לכם!",
           form_title: "אישור הגעה",
-          form_subtitle: "אנא השיבו דרך הטופס שלמטה.",
+          form_subtitle: "אנא הודיעו לנו אם תצטרפו אלינו, ומלאו את הטופס שלמטה.",
           label_firstName: "שם פרטי", label_lastName: "שם משפחה",
-          label_email: "אימייל", label_guests: "מספר מלווים נוספים",
-          hint_guests: "אנשים נוספים מלבדכם (0 אם תגיעו לבד)",
-          label_parking: "אני צריך/ה חנייה",
-          label_restrictions: "(הגבלות תזונתיות (לא חובה",
-          label_message: "הערה (לא חובה)",
           label_comes: "?האם תגיעו",
           comes_yes: "✓ כן, אגיע!", comes_no: "✗ לא, לא אוכל להגיע",
           comes_hint: "אנא בחרו אפשרות למעלה.",
+          label_plusone: "?תגיעו עם מלווה",
+          label_children: "?תגיעו עם ילדים",
+          label_parking: "?האם תזדקקו לחניה",
+          label_notes: "?רוצים להשאיר לנו הודעה",
+          hint_notes: "(לא חובה) כאן אפשר לציין אלרגיות למזון, או פשוט להשאיר לנו ברכות חמות.",
+          yn_yes: "כן", yn_no: "לא",
           submit: "שליחה", sending: "שולח…",
           success_title: "!תודה",
           success_sub: "תשובתכם נרשמה. נשמח לראותכם בתל אביב באוקטובר!",
@@ -999,18 +1005,19 @@
           tip_dress_d: "24–30 °C в начале октября. Элегантный кэжуал, обувь для танцев. Пожалуйста, без белого.",
           tip_visa_t: "Формальности",
           tip_visa_d: "Для многих граждан ЕС виза не нужна, но требуется разрешение ETA-IL до вылета (паспорт действителен 6 месяцев).",
-          form_eyebrow: "Мы на вас рассчитываем",
-          form_title: "Подтверждение",
-          form_subtitle: "Пожалуйста, ответьте через форму ниже.",
+          form_eyebrow: "Мы ждём вас!",
+          form_title: "RSVP",
+          form_subtitle: "Пожалуйста, сообщите, сможете ли вы приехать к нам на свадьбу, заполнив форму ниже.",
           label_firstName: "Имя", label_lastName: "Фамилия",
-          label_email: "Электронная почта", label_guests: "Количество дополнительных гостей",
-          hint_guests: "Кроме вас (0, если придёте один/одна)",
-          label_parking: "Мне нужна парковка",
-          label_restrictions: "Диетические ограничения (необязательно)",
-          label_message: "Хотите что-то добавить? (необязательно)",
           label_comes: "Вы придёте?",
           comes_yes: "✓ Да, буду!", comes_no: "✗ Нет, не смогу прийти",
           comes_hint: "Пожалуйста, выберите вариант выше.",
+          label_plusone: "Будете ли вы +1?",
+          label_children: "Будут ли с вами дети?",
+          label_parking: "Нужно ли вам парковочное место?",
+          label_notes: "Есть ли у вас пожелания или комментарии?",
+          hint_notes: "(Необязательно) Здесь можно указать ваши пищевые аллергии или просто оставить тёплые пожелания.",
+          yn_yes: "Да", yn_no: "Нет",
           submit: "Отправить", sending: "Отправка…",
           success_title: "Спасибо!",
           success_sub: "Ваш ответ записан. Ждём встречи с вами в Тель-Авиве в октябре!",
@@ -1119,6 +1126,16 @@
         if (hint) hint.style.display = val === null ? "" : "none";
       }
 
+      /* ---------- Toggles Oui/Non (accompagnant·e / enfants / parking) ---------- */
+      const ynState = { plusone: false, children: false, parking: false };
+      function setYN(key, val) {
+        ynState[key] = val;
+        const yes = document.getElementById(key + "-yes");
+        const no = document.getElementById(key + "-no");
+        if (yes) yes.classList.toggle("active", val === true);
+        if (no) no.classList.toggle("active", val === false);
+      }
+
       /* ---------- Pré-remplissage ---------- */
       let prefillPhone = "";
       let prefillTg = "";
@@ -1131,12 +1148,12 @@
 
         const firstName = document.getElementById("field-firstName").value.trim();
         const lastName = document.getElementById("field-lastName").value.trim();
-        const email = document.getElementById("field-email").value.trim();
-        const guests = comesValue ? document.getElementById("field-guests").value : "0";
-        const parking = comesValue ? document.getElementById("field-parking").checked : false;
-        const message = document.getElementById("field-message").value.trim();
-        const restrictions = comesValue ? document.getElementById("field-restrictions").value.trim() : "";
         const comes = comesValue;
+        const plusOne = comes ? ynState.plusone : false;
+        const children = comes ? ynState.children : false;
+        const parking = comes ? ynState.parking : false;
+        const guests = plusOne ? 1 : 0;
+        const notes = document.getElementById("field-notes").value.trim();
 
         if (!firstName || !lastName) {
           status.textContent = t.error_name;
@@ -1154,8 +1171,9 @@
         status.className = "form-status sending";
 
         const payload = {
-          firstName, lastName, email, guests, parking, message, restrictions,
-          comes, lang: currentLang, phone: prefillPhone, tg: prefillTg,
+          firstName, lastName, comes, plusOne, children, parking,
+          guests, notes, message: notes,
+          lang: currentLang, phone: prefillPhone, tg: prefillTg,
         };
 
         try {
@@ -1200,6 +1218,7 @@
 
       /* ---------- Démarrage ---------- */
       setLang(detectLang());
+      ["plusone", "children", "parking"].forEach((k) => setYN(k, false));
       setInterval(updateCountdown, 1000);
 
       /* Pré-remplissage via URL ?p= (téléphone) ou ?t= (telegram) */
@@ -1217,9 +1236,10 @@
           const resp = await fetch(url);
           const data = await resp.json();
           if (data.found) {
-            document.getElementById("field-firstName").value = data.firstName || "";
-            document.getElementById("field-lastName").value = data.lastName || "";
-            document.getElementById("field-email").value = data.email || "";
+            const fn = document.getElementById("field-firstName");
+            const ln = document.getElementById("field-lastName");
+            if (fn) fn.value = data.firstName || "";
+            if (ln) ln.value = data.lastName || "";
           }
         } catch (err) {
           console.warn("Prefill échoué:", err);
