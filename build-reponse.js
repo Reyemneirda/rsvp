@@ -39,8 +39,8 @@ function cutIncl(s, startNeedle, endNeedle) {
 
 // (L'affiche est conservée dans le hero, en format compact — voir étape 6.)
 
-// 1) Retire les sections du guide (programme → infos pratiques), on garde le RSVP.
-html = cut(html, '<section id="program"', '<section id="rsvp"');
+// 1) Retire les sections du guide (accueil → visa), on garde le RSVP.
+html = cut(html, '<section id="welcome"', '<section id="rsvp"');
 
 // 2) Retire la section « Cadeau » de l'accueil (le bouton cadeau reste dans
 //    le message de confirmation après envoi du formulaire).
@@ -60,7 +60,10 @@ html = html
 html = html
   .split('src="music.mp3"').join('src="../music.mp3"')
   .split('src="banner.jpeg"').join('src="../banner.jpeg"')
-  .split('href="cadeau.html"').join('href="../cadeau.html"');
+  .split('href="cadeau.html"').join('href="../cadeau.html"')
+  // Le bouton « guide » du message de confirmation pointe vers l'accueil (l'ancre
+  // #welcome n'existe pas sur /reponse/), donc on renvoie vers la page d'accueil.
+  .split('href="#welcome"').join('href="../#welcome"');
 
 // 5b) Hero en 2 colonnes : affiche à gauche, texte à droite (desktop).
 {

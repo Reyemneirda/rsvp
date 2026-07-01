@@ -3,9 +3,10 @@
 Site web dédié au RSVP, thème **affiche de cinéma vintage** (façon *Casablanca*)
 tiré de `banner.jpeg` : papier crème, bleu canard, jaune doré, rouge terracotta ;
 typo brush script (Yellowtail), condensé (Oswald) et serif (EB Garamond). Sections :
-**programme** de la soirée, **lieu** (Beit Andromeda), **hébergement** (quartiers de
-Tel Aviv-Jaffa), **infos pratiques** (transport, ETA-IL, climat/tenue),
+**mot d'accueil**, **lieu** (Beit Andromeda), **comment venir** (vols, quand arriver,
+transports), **où loger** (quartiers de Tel Aviv-Jaffa), **visa / ETA-IL**,
 **confirmation de présence**, **page cadeau** et footer.
+_(La section « programme » est retirée pour le moment — traductions `prog_*` conservées.)_
 
 Contenu repris du _Guide pratique du mariage_ (Adrien & Alina, 5 octobre 2026).
 

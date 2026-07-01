@@ -262,6 +262,24 @@
       .area-note { font-family: var(--font-body); font-style: italic; font-size: 1.12rem; color: var(--ink-soft); text-align: center; margin-top: 1.8rem; }
       .area-note a { color: var(--teal); border-bottom: 1px solid var(--line); text-decoration: none; }
 
+      /* ============== GUIDE (texte) ============== */
+      .guide-p { font-family: var(--font-body); font-size: 1.18rem; line-height: 1.8; color: var(--ink); max-width: 640px; margin: 0 auto 1.1rem; text-align: left; }
+      [dir="rtl"] .guide-p { text-align: right; }
+      .guide-p a { color: var(--terracotta); border-bottom: 1px solid rgba(193,71,42,0.4); text-decoration: none; word-break: break-word; }
+      .guide-p a:hover { border-color: var(--terracotta); }
+      .guide-signoff { font-family: var(--font-script); font-size: 2rem; color: var(--terracotta); text-align: center; margin-top: 1.4rem; }
+      .guide-sub { font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); max-width: 640px; margin: 2.2rem auto 0.7rem; }
+      [dir="rtl"] .guide-sub { text-align: right; }
+      .guide-callout { max-width: 640px; margin: 1.8rem auto 0; background: var(--paper-card); border: 1px solid var(--line); border-left: 3px solid var(--terracotta); border-radius: 8px; padding: 1.3rem 1.5rem; }
+      [dir="rtl"] .guide-callout { border-left: 1px solid var(--line); border-right: 3px solid var(--terracotta); }
+      .guide-callout h4 { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 0.5rem; }
+      .guide-callout p { font-family: var(--font-body); font-size: 1.12rem; line-height: 1.7; color: var(--ink); }
+      .guide-note { font-size: 0.98rem !important; color: var(--ink-soft) !important; font-style: italic; margin-top: 0.7rem; }
+      .hood { max-width: 640px; margin: 1.9rem auto 0; }
+      .hood h3 { font-family: var(--font-script); font-size: 2.1rem; color: var(--terracotta); margin-bottom: 0.3rem; }
+      [dir="rtl"] .hood { text-align: right; }
+      .hood .guide-p { margin-bottom: 0; }
+
       /* ============== INFOS PRATIQUES ============== */
       .tips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
       .tip { display: flex; gap: 1rem; align-items: flex-start; }
@@ -432,7 +450,10 @@
       <div class="countdown" id="countdown"></div>
     </section>
 
-    <section id="rsvp" class="section-alt">
+    <!-- PROGRAMME retiré temporairement (pas encore décidé). Traductions prog_* conservées. -->
+
+    <!-- ========================= MOT D'ACCUEIL ========================== -->
+    <section id="rsvp">
       <div class="wrap-narrow reveal">
         <p class="eyebrow" data-i18n="form_eyebrow"></p>
         <h2 class="h-section" data-i18n="form_title"></h2>
@@ -516,6 +537,7 @@
             <p class="success-text" data-i18n="success_title"></p>
             <p class="success-sub" data-i18n="success_sub"></p>
             <div class="success-actions">
+              <a class="hero-btn hero-btn-ghost" href="../#welcome" data-i18n="hero_guide_btn"></a>
               <a class="hero-btn hero-btn-solid" href="../cadeau.html" data-i18n="hero_gift_btn"></a>
             </div>
           </div>
@@ -541,6 +563,7 @@
           <h4 data-i18n="footer_social"></h4>
           <a href="https://www.instagram.com/reyemneird_a/" target="_blank" rel="noopener noreferrer">Instagram · Adrien</a>
           <a href="https://www.instagram.com/fooksalin/" target="_blank" rel="noopener noreferrer">Instagram · Alina</a>
+          <a href="https://chat.whatsapp.com/KIStFJGaraW7Vwm0iiukMr" target="_blank" rel="noopener noreferrer" data-i18n="footer_whatsapp"></a>
         </div>
       </div>
       <p class="footer-credit">Adrien & Alina — Tel Aviv-Jaffa · 5.10.2026</p>
@@ -633,6 +656,43 @@
           gift_title: "Participer au cadeau",
           gift_text: "En Israël, la tradition veut qu'on offre un chèque. Une boîte sera prévue le soir du mariage — et pour ceux qui préfèrent le virement, toutes les infos sont ici.",
           gift_btn: "Voir les coordonnées",
+          // --- Guide ---
+          welcome_eyebrow: "Un mot pour vous",
+          welcome_title: "Bienvenue à Tel-Aviv",
+          welcome_p1: "Bonjour ! Nous avons hâte de vous accueillir à Tel-Aviv dès ce mois d'octobre. Nous sommes impatients de partager avec vous cette journée si importante et, ce qui est tout aussi passionnant, de vous faire découvrir notre ville préférée, celle où nous nous sommes rencontrés et où nous vivons.",
+          welcome_p2: "Nous préparons pour vous un petit guide. Vous y trouverez les principales informations pratiques sur la ville et le pays : les transports, la monnaie, les traditions et règles locales ; le mariage et le déroulement d'une cérémonie en Israël. Et, bien sûr, les adresses de nos bars, restaurants et endroits préférés.",
+          welcome_p3: "Il reste peu de temps avant le mariage, mais nous vous conseillons déjà de vous occuper des billets d'avion et du logement. Pour répondre tout de suite aux principales questions, nous avons rassemblé ici quelques recommandations concernant les vols, les transports et les hôtels.",
+          welcome_signoff: "À très vite !",
+          travel_eyebrow: "Avant de partir",
+          travel_title: "Comment venir ?",
+          travel_eu_t: "Depuis l'Europe",
+          travel_eu_d: "La compagnie aérienne israélienne <a href='https://www.elal.com' target='_blank' rel='noopener'>El Al</a> vole quoi qu'il arrive, même lorsque les compagnies européennes suspendent leurs vols. Et c'est sans doute là que s'arrêtent ses avantages (haha). Heureusement, la situation est calme en ce moment, et les compagnies aériennes européennes desservent Israël à leur rythme habituel.",
+          travel_ru_t: "Depuis la Russie",
+          travel_ru_d: "El Al a temporairement suspendu ses vols depuis Moscou pour des raisons de sécurité, selon les informations disponibles fin juin — mais ils pourraient reprendre bientôt (à vérifier régulièrement). Parmi les options directes, il y a la compagnie russe <a href='https://www.uralairlines.com' target='_blank' rel='noopener'>Ural Airlines</a>. Pour les vols avec correspondance, la Géorgie est souvent une bonne option : plusieurs vols par jour partent de là avec El Al et d'autres compagnies israéliennes.",
+          arrive_t: "Quand arriver ?",
+          arrive_d: "Nous vous conseillons de prévoir votre arrivée quelques jours avant le mariage, en particulier si vous voyagez depuis la Russie, compte tenu de la situation des vols et des aéroports. Attention : fin septembre et en octobre, il y a des fêtes en Israël. À Tel-Aviv, cela a peu d'impact sur la vie quotidienne : certains cafés ou magasins peuvent être fermés, mais rien de plus. En revanche, certains jours, les transports publics ne fonctionnent pas. Si vous arrivez à cette période, vous ne pourrez rejoindre la ville depuis l'aéroport qu'en taxi via l'application <a href='https://gett.com' target='_blank' rel='noopener'>Gett</a> (obligatoire), pour environ 180 shekels, soit environ 50 euros.",
+          transport_off_t: "Quand les transports ne circulent pas",
+          transport_off_d: "Du vendredi 2 octobre à 16 h au samedi 3 octobre à 18 h.*",
+          transport_off_notes: "* Horaires approximatifs : les horaires précis seront connus plus près de la date.\n** Les premiers trains depuis l'aéroport commencent généralement à circuler le samedi vers 22 h.\n*** Valable tous les vendredis et samedis, pas seulement les jours de fête.",
+          loger_eyebrow: "Où dormir",
+          loger_title: "Où loger ?",
+          loger_intro: "Nos quartiers préférés, du plus proche du lieu jusqu'au centre-ville.",
+          hood_jaffa_n: "Jaffa (Yafo)",
+          hood_jaffa_d: "Le mariage a lieu dans une salle du quartier de Jaffa, la partie historique de la ville. Vous pouvez y séjourner : lors de votre recherche, choisissez « Jaffa Alef / 1 ». Les avantages : la mer et le lieu du mariage sont proches, et il y a beaucoup de sites historiques et de jolies adresses autour du marché aux puces. Le centre est à environ trente minutes à pied en longeant la promenade du bord de mer. Le seul inconvénient : le quartier peut être bruyant le soir.",
+          hood_flo_n: "Florentin",
+          hood_flo_d: "Un quartier situé entre Jaffa et le centre, qui a connu une forte gentrification il y a une dizaine d'années. C'est un peu le 11e arrondissement de Paris à Tel-Aviv, le Shoreditch londonien ou le Brooklyn new-yorkais (Moscovites, désolés, nous n'avons pas trouvé d'équivalent). On y trouve beaucoup de jeunes, de bars, de restaurants et de cafés — l'endroit où l'on peut presque se faire tatouer tout en faisant toiletter son chien. Bref, vous voyez l'ambiance. À notre avis, une bonne option pour un premier court séjour, surtout si vous n'êtes pas contre les bars et les soirées.",
+          hood_neve_n: "Neve Tzedek",
+          hood_neve_d: "Une charmante partie historique et touristique de la ville. Comme Florentin, le quartier se trouve entre Jaffa et le centre, mais plus proche de ce dernier. On y trouve de petites maisons, des restaurants et des cafés, des galeries et des boutiques. C'est près de la mer, plutôt calme et très agréable. Un bon choix si vous venez avec des enfants ou si vous privilégiez le calme et la beauté à tout le reste.",
+          hood_kerem_n: "Kerem HaTeimanim",
+          hood_kerem_d: "Des airs de maison de campagne en plein centre-ville. De petites maisons donnent directement sur la rue, la mer est à deux minutes et le marché à trois. On y trouve énormément de petits cafés proposant différentes cuisines : des grillades israéliennes classiques et des restaurants de houmous, mais aussi un restaurant éthiopien et un ramen bar. L'ambiance y est un peu hippie, même si la gentrification est passée par là. Nous vous conseillons un logement dans la partie plus proche de la mer et plus éloignée du marché — sauf si vous aimez être réveillés à six heures du matin par l'ouverture des échoppes.",
+          hood_center_n: "Centre-ville (Lev HaIr)",
+          hood_center_d: "Son immense avantage : il est près de chez nous (lol !). Et plus généralement, vous serez relativement proches de la mer, du marché, du lieu du mariage et d'autres endroits historiques intéressants — surtout si vous choisissez les rues du centre. Le boulevard Rothschild, la rue Dizengoff, Sheinkin et la place Dizengoff : tout cela, on approuve. Attention : des travaux de métro sont en cours sur Allenby, Ben Yehuda et Ibn Gabirol. Ce n'est pas toujours bruyant, mais loger à proximité peut être un peu moins confortable.",
+          visa_eyebrow: "Formalités",
+          visa_title: "Visa & ETA-IL",
+          visa_p1: "Les citoyens français et russes sont exemptés de visa pour un séjour touristique de moins de 90 jours. Toutefois, depuis le 1er janvier 2025, il est obligatoire d'obtenir une autorisation électronique ETA-IL avant le départ.",
+          visa_p2: "La demande se fait en ligne sur le site officiel <a href='https://israel-entry.piba.gov.il' target='_blank' rel='noopener'>israel-entry.piba.gov.il</a>. Elle coûte 25 shekels (environ 7 euros) et reste valable deux ans. Le délai de traitement est d'environ 72 heures : mieux vaut donc faire la demande à l'avance. Votre passeport doit être valable au moins six mois après la date prévue de votre départ d'Israël. Attention : il s'agit du seul site officiel pour cette démarche.",
+          visa_p3: "Si vous avez la nationalité d'un autre pays que la France ou la Russie, merci de vérifier vous-même les conditions d'entrée.",
+          footer_whatsapp: "Canal d'annonces (WhatsApp)",
           // Footer
           footer_contact: "Nous contacter",
           footer_contact_intro: "Une question sur le mariage, le voyage, le parking ou les restrictions ?",
@@ -711,6 +771,43 @@
           gift_title: "Wedding gift",
           gift_text: "In Israel, the custom is to give a cheque. A box will be set up on the wedding night — and for those who prefer a transfer, all the details are here.",
           gift_btn: "See the details",
+          // --- Guide ---
+          welcome_eyebrow: "A word for you",
+          welcome_title: "Welcome to Tel Aviv",
+          welcome_p1: "Hi! We are looking forward to welcoming you to Tel Aviv this October. We cannot wait to share this important day with you and, just as excitingly, to show you our favourite city — the one where we met and where we live.",
+          welcome_p2: "We are putting together a little guide for you. It includes the main practical information about the city and the country: transport, currency, local customs and rules; the wedding itself and what a ceremony in Israel is like. And, of course, you will find addresses for some of our favourite bars, restaurants and places.",
+          welcome_p3: "There is not much time left before the wedding, so we recommend sorting out your flights and accommodation already. To answer the main questions straight away, we have put together a few recommendations on flights, transport and hotels.",
+          welcome_signoff: "See you soon!",
+          travel_eyebrow: "Before you go",
+          travel_title: "How to get here?",
+          travel_eu_t: "From Europe",
+          travel_eu_d: "The Israeli airline <a href='https://www.elal.com' target='_blank' rel='noopener'>El Al</a> flies no matter what — even when European airlines suspend their routes. That is probably where its advantages end, though (haha). Fortunately, the situation is calm at the moment, so European airlines are flying to Israel as usual.",
+          travel_ru_t: "From Russia",
+          travel_ru_d: "El Al has temporarily suspended flights from Moscow for security reasons, according to information available at the end of June — but they may resume soon, so it is worth checking from time to time. For direct flights, there is <a href='https://www.uralairlines.com' target='_blank' rel='noopener'>Ural Airlines</a>. For connecting flights, Georgia is often a good option: there are several flights a day from there with El Al and other Israeli airlines.",
+          arrive_t: "When should you arrive?",
+          arrive_d: "We recommend arriving a few days before the wedding, especially if you are travelling from Russia, given the current situation with flights and airports. Please note that there are holidays in Israel in late September and October. In Tel Aviv, this does not affect daily life too much: some cafés and shops may be closed, but that is usually all. However, there are certain days when public transport does not operate. So, if you arrive on one of those dates, the only way to get from the airport to the city will be by taxi via the <a href='https://gett.com' target='_blank' rel='noopener'>Gett</a> app (required), around 180 shekels, or approximately 50 euros.",
+          transport_off_t: "When public transport doesn't run",
+          transport_off_d: "From 4 pm on Friday, 2 October, until 6 pm on Saturday, 3 October.*",
+          transport_off_notes: "* These are approximate times: the exact schedule will be clearer closer to the date.\n** The first trains from the airport usually start running on Saturday at around 10 pm.\n*** This applies to all Fridays and Saturdays, not only holidays.",
+          loger_eyebrow: "Where to stay",
+          loger_title: "Where to stay?",
+          loger_intro: "Our favourite neighbourhoods, from closest to the venue to the city centre.",
+          hood_jaffa_n: "Jaffa (Yafo)",
+          hood_jaffa_d: "The wedding takes place in a venue in Jaffa, the old historic part of the city. You can stay there: when looking for accommodation, choose \"Jaffa Alef / 1\". The advantages: the sea and the wedding venue are close, with plenty of historic places and lovely spots around the flea market. The city centre is about a 30-minute walk along the promenade. The only downside: it can be noisy in the evenings.",
+          hood_flo_n: "Florentin",
+          hood_flo_d: "A neighbourhood between Jaffa and the city centre that went through gentrification about ten years ago. It is Tel Aviv's version of Paris's 11th arrondissement, London's Shoreditch or Brooklyn in New York (Muscovites, sorry, we could not think of an equivalent). There are lots of young people, bars, restaurants and cafés — the kind of place where you could get a tattoo and have your dog groomed at the same time. You get the vibe. In our opinion, a great option for a first short trip, especially if you are happy with bars and nightlife.",
+          hood_neve_n: "Neve Tzedek",
+          hood_neve_d: "A charming historic and touristy part of the city. Like Florentin, it sits between Jaffa and the centre, but closer to the latter. There are low-rise houses, restaurants and cafés, galleries and boutiques. It is close to the sea, fairly quiet and very pleasant. A good choice if you are coming with children or value peace and beauty above all.",
+          hood_kerem_n: "Kerem HaTeimanim",
+          hood_kerem_d: "A slightly countryside feel in the middle of the city. Small houses open directly onto the street, the sea is two minutes away and the market three. There are lots of small cafés serving different cuisines: classic Israeli grills and hummus spots, but also an Ethiopian restaurant and a ramen bar. It has a slightly hippie feel, although gentrification has happened here too. We recommend accommodation in the part closer to the sea and farther from the market — unless you would like to be woken at six in the morning by the stalls opening.",
+          hood_center_n: "City centre (Lev HaIr)",
+          hood_center_d: "Its huge advantage: it is close to us (lol!). More generally, you will be relatively close to the sea, the market, the wedding venue and other interesting historic places — especially if you choose the central streets. Rothschild Boulevard, Dizengoff Street, Sheinkin and Dizengoff Square: we approve of all of them. Please note: metro construction is currently under way on Allenby, Ben Yehuda and Ibn Gabirol. It is not always noisy, but staying nearby may be a little less comfortable.",
+          visa_eyebrow: "Formalities",
+          visa_title: "Visa & ETA-IL",
+          visa_p1: "French and Russian citizens do not need a visa for tourist stays of fewer than 90 days. However, since 1 January 2025, it has been mandatory to obtain an ETA-IL electronic travel authorisation before departure.",
+          visa_p2: "The application is submitted online through the official website <a href='https://israel-entry.piba.gov.il' target='_blank' rel='noopener'>israel-entry.piba.gov.il</a>. It costs 25 shekels (around 7 euros) and is valid for two years. Processing takes about 72 hours, so it is best to apply well in advance. Your passport must be valid for at least six months after your planned departure date from Israel. Please note: this is the only official website for the application.",
+          visa_p3: "If you hold citizenship of a country other than France or Russia, please check the entry requirements yourself.",
+          footer_whatsapp: "Announcements channel (WhatsApp)",
           footer_contact: "Contact us",
           footer_contact_intro: "A question about the wedding, travel, parking or dietary needs?",
           footer_schedule: "Schedule", footer_social: "Follow us",
@@ -788,6 +885,43 @@
           gift_title: "השתתפות במתנה",
           gift_text: "בישראל נהוג לתת צ'ק. תוצב קופסה בערב החתונה — ולמי שמעדיף העברה בנקאית, כל הפרטים כאן.",
           gift_btn: "לצפייה בפרטים",
+          // --- Guide ---
+          welcome_eyebrow: "כמה מילים",
+          welcome_title: "ברוכים הבאים לתל אביב",
+          welcome_p1: "שלום! אנחנו מצפים לארח אתכם בתל אביב כבר באוקטובר הקרוב. אנחנו נרגשים לחלוק אתכם את היום החשוב הזה, ולא פחות מכך — להראות לכם את העיר האהובה עלינו, זו שבה הכרנו ובה אנחנו חיים.",
+          welcome_p2: "אנחנו מכינים עבורכם מדריך קטן. תמצאו בו את המידע המעשי החשוב על העיר ועל הארץ: תחבורה, מטבע, מנהגים וכללים מקומיים; החתונה ואיך מתנהל טקס בישראל. וכמובן, את הכתובות של הברים, המסעדות והמקומות האהובים עלינו.",
+          welcome_p3: "נשאר מעט זמן עד החתונה, ולכן אנחנו ממליצים כבר עכשיו לדאוג לכרטיסי טיסה וללינה. כדי לענות מיד על השאלות העיקריות, ריכזנו כאן כמה המלצות על טיסות, תחבורה ומלונות.",
+          welcome_signoff: "נתראה בקרוב!",
+          travel_eyebrow: "לפני הנסיעה",
+          travel_title: "איך מגיעים?",
+          travel_eu_t: "מאירופה",
+          travel_eu_d: "חברת התעופה הישראלית <a href='https://www.elal.com' target='_blank' rel='noopener'>אל על</a> טסה בכל מצב — גם כשחברות אירופיות מבטלות טיסות. וכאן כנראה נגמרים היתרונות שלה (חחח). למזלנו, המצב רגוע כרגע, וחברות התעופה האירופיות טסות לישראל כרגיל.",
+          travel_ru_t: "מרוסיה",
+          travel_ru_d: "אל על השעתה זמנית את הטיסות ממוסקבה מטעמי ביטחון — נכון למידע מסוף יוני. ייתכן שהן יתחדשו בקרוב (כדאי לבדוק מדי פעם). מבין האפשרויות הישירות יש את <a href='https://www.uralairlines.com' target='_blank' rel='noopener'>Ural Airlines</a>. לטיסות עם קונקשן, גאורגיה היא לרוב אפשרות טובה: יש משם כמה טיסות ביום עם אל על וחברות ישראליות נוספות.",
+          arrive_t: "מתי להגיע?",
+          arrive_d: "אנחנו ממליצים להגיע כמה ימים לפני החתונה — במיוחד אם אתם טסים מרוסיה, בהתחשב במצב הטיסות ושדות התעופה. שימו לב: בסוף ספטמבר ובאוקטובר יש חגים בישראל. בתל אביב זה כמעט לא משפיע על היומיום: חלק מבתי הקפה או החנויות עשויים להיות סגורים, אבל לא יותר מזה. עם זאת, יש ימים שבהם התחבורה הציבורית אינה פועלת. אם אתם מגיעים בתאריך כזה, תוכלו להגיע משדה התעופה לעיר רק במונית דרך אפליקציית <a href='https://gett.com' target='_blank' rel='noopener'>Gett</a> (חובה), בכ-180 שקלים, כלומר בערך 50 יורו.",
+          transport_off_t: "מתי התחבורה לא פועלת",
+          transport_off_d: "מיום שישי, 2 באוקטובר, בשעה 16:00 ועד שבת, 3 באוקטובר, בשעה 18:00.*",
+          transport_off_notes: "* השעות משוערות: לוח הזמנים המדויק יתברר קרוב יותר לתאריך.\n** הרכבות הראשונות משדה התעופה מתחילות בדרך כלל בשבת בסביבות 22:00.\n*** נכון לכל שישי ושבת, לא רק בימי חג.",
+          loger_eyebrow: "איפה לישון",
+          loger_title: "איפה לישון?",
+          loger_intro: "השכונות האהובות עלינו — מהקרובה ביותר לאולם ועד מרכז העיר.",
+          hood_jaffa_n: "יפו",
+          hood_jaffa_d: "החתונה מתקיימת באולם בשכונת יפו, החלק ההיסטורי של העיר. אפשר להתאכסן שם: בחיפוש דירה בחרו \"יפו אלף / 1\". היתרונות: הים ומקום החתונה קרובים, ויש הרבה אתרים היסטוריים ומקומות נחמדים סביב שוק הפשפשים. המרכז במרחק כחצי שעה הליכה לאורך הטיילת. החיסרון היחיד: בערבים השכונה יכולה להיות רועשת.",
+          hood_flo_n: "פלורנטין",
+          hood_flo_d: "שכונה בין יפו למרכז שעברה ג'נטריפיקציה לפני כעשור. זו גרסת תל אביב לרובע ה-11 של פריז, לשורדיץ' הלונדוני או לברוקלין הניו-יורקי (מוסקבאים, סליחה, לא מצאנו מקבילה). יש כאן הרבה צעירים, ברים, מסעדות ובתי קפה — מקום שבו אפשר כמעט לעשות קעקוע ובמקביל לספר את הכלב. בקיצור, הבנתם את הוייב. לדעתנו, אופציה טובה לביקור קצר ראשון, במיוחד אם אתם בעד ברים ובילויים.",
+          hood_neve_n: "נווה צדק",
+          hood_neve_d: "חלק היסטורי ותיירותי מקסים של העיר. כמו פלורנטין, השכונה נמצאת בין יפו למרכז, אך קרובה יותר למרכז. יש בה בתים נמוכים, מסעדות ובתי קפה, גלריות וחנויות בוטיק. קרוב לים, שקט למדי ונעים מאוד. בחירה טובה אם אתם מגיעים עם ילדים או מעדיפים שקט ויופי על פני הכול.",
+          hood_kerem_n: "כרם התימנים",
+          hood_kerem_d: "אווירה כפרית קצת בלב העיר. בתים קטנים נפתחים היישר לרחוב, הים במרחק שתי דקות והשוק בשלוש. יש כאן המון בתי קפה קטנים עם מטבחים שונים: מנגלים ישראליים קלאסיים וחומוסיות, אבל גם מסעדה אתיופית ובר ראמן. יש נגיעה של אווירת היפים, אף שגם כאן הג'נטריפיקציה עשתה את שלה. אנחנו ממליצים על לינה בחלק הקרוב יותר לים והרחוק יותר מהשוק — אלא אם בא לכם שיעירו אתכם בשש בבוקר עם פתיחת הדוכנים.",
+          hood_center_n: "מרכז העיר (לב העיר)",
+          hood_center_d: "היתרון העצום שלו: הוא קרוב אלינו (לול!). ובכלל, תהיו קרובים יחסית לים, לשוק, למקום החתונה ולאתרים היסטוריים מעניינים נוספים — במיוחד אם תבחרו ברחובות המרכז. שדרות רוטשילד, רחוב דיזנגוף, שינקין וכיכר דיזנגוף — כל אלה מקבלים אישור. שימו לב: ברחובות אלנבי, בן יהודה ואבן גבירול מתבצעות עבודות לרכבת התחתית. לא תמיד רועש, אבל לינה בקרבת מקום עלולה להיות פחות נוחה.",
+          visa_eyebrow: "נהלים",
+          visa_title: "ויזה ו-ETA-IL",
+          visa_p1: "אזרחי צרפת ורוסיה פטורים מוויזה לשהות תיירותית של פחות מ-90 ימים. עם זאת, החל מ-1 בינואר 2025 חובה להנפיק אישור כניסה אלקטרוני ETA-IL לפני היציאה.",
+          visa_p2: "הבקשה מוגשת אונליין באתר הרשמי <a href='https://israel-entry.piba.gov.il' target='_blank' rel='noopener'>israel-entry.piba.gov.il</a>. עלותה 25 שקלים (בערך 7 יורו) והיא תקפה לשנתיים. הטיפול אורך כ-72 שעות, ולכן עדיף להגיש מראש. הדרכון שלכם חייב להיות בתוקף לפחות שישה חודשים אחרי מועד היציאה המתוכנן מישראל. שימו לב: זהו האתר הרשמי היחיד להנפקה.",
+          visa_p3: "אם אתם אזרחי מדינה אחרת מלבד צרפת או רוסיה, אנא בדקו בעצמכם את תנאי הכניסה.",
+          footer_whatsapp: "ערוץ עדכונים (וואטסאפ)",
           footer_contact: "צרו קשר",
           footer_contact_intro: "שאלה על החתונה, הנסיעה, החניה או התזונה?",
           footer_schedule: "שעות", footer_social: "עקבו אחרינו",
@@ -865,6 +999,43 @@
           gift_title: "Свадебный подарок",
           gift_text: "В Израиле принято дарить чек. В вечер свадьбы будет коробка — а для тех, кто предпочитает перевод, все реквизиты здесь.",
           gift_btn: "Посмотреть реквизиты",
+          // --- Guide ---
+          welcome_eyebrow: "Пара слов",
+          welcome_title: "Добро пожаловать в Тель-Авив",
+          welcome_p1: "Привет! Мы ждём вас в Тель-Авиве уже в этом октябре. Нам не терпится разделить с вами этот важный день и, что не менее интересно, показать наш любимый город, где мы познакомились и живём.",
+          welcome_p2: "Мы готовим для вас небольшой гид. Из него вы узнаете основную практическую информацию о городе и стране: о транспорте, валюте, местных традициях и правилах; о свадьбе и о том, как проходит церемония в Израиле. И, конечно, найдёте адреса наших любимых баров, ресторанов и мест.",
+          welcome_p3: "До свадьбы остаётся не так много времени, и мы советуем уже сейчас позаботиться о билетах и жилье. Чтобы сразу ответить на главные вопросы, мы собрали здесь небольшие рекомендации по перелётам, транспорту и отелям.",
+          welcome_signoff: "До встречи!",
+          travel_eyebrow: "Перед вылетом",
+          travel_title: "Чем лететь?",
+          travel_eu_t: "Из Европы",
+          travel_eu_d: "Израильские авиалинии <a href='https://www.elal.com' target='_blank' rel='noopener'>El Al</a> летают несмотря ни на что — даже когда европейские авиакомпании приостанавливают рейсы. На этом их преимущества, пожалуй, заканчиваются (хаха). К счастью, сейчас ситуация спокойная, поэтому европейские авиакомпании летают в Израиль в прежнем ритме.",
+          travel_ru_t: "Из России",
+          travel_ru_d: "El Al временно приостановил рейсы из Москвы по соображениям безопасности — по информации на конец июня. Но, возможно, вскоре они вернутся (нужно периодически проверять). Из прямых вариантов есть <a href='https://www.uralairlines.com' target='_blank' rel='noopener'>«Уральские авиалинии»</a>. Из стыковочных маршрутов часто неплохо работает Грузия: оттуда есть несколько рейсов в день El Al и других израильских авиакомпаний.",
+          arrive_t: "Когда прилетать?",
+          arrive_d: "Мы советуем прилететь за несколько дней до свадьбы — особенно тем, кто летит из России, учитывая ситуацию с рейсами и аэропортами. Учтите, что в конце сентября и октябре в Израиле праздники. В Тель-Авиве это не слишком влияет на жизнь: некоторые кафе и магазины могут быть закрыты, но не более того. Однако есть дни, когда общественный транспорт не работает. Если вы прилетаете в такую дату, добраться из аэропорта можно будет только на такси через приложение <a href='https://gett.com' target='_blank' rel='noopener'>Gett</a> — примерно за 180 шекелей (около 50 евро).",
+          transport_off_t: "Когда транспорт не работает",
+          transport_off_d: "С 16:00 пятницы, 2 октября, до 18:00 субботы, 3 октября.*",
+          transport_off_notes: "* Часы примерные: ближе к дате будет понятнее точное расписание.\n** Первые поезда из аэропорта обычно начинают ходить в субботу около 22:00.\n*** Актуально для всех пятниц и суббот, не только праздничных дней.",
+          loger_eyebrow: "Где остановиться",
+          loger_title: "Где жить?",
+          loger_intro: "Наши любимые районы — от ближайшего к месту свадьбы до центра города.",
+          hood_jaffa_n: "Яффо (Yafo)",
+          hood_jaffa_d: "Свадьба пройдёт в зале в районе Яффо — старой исторической части города. Можно остановиться там: при поиске жилья выбирайте «Яффо, алеф/1». Из плюсов: близко к морю и месту свадьбы, много исторических мест и симпатичных заведений у блошиного рынка. До центра — около получаса пешком по набережной. Из минусов: по вечерам может быть шумно.",
+          hood_flo_n: "Флорентин",
+          hood_flo_d: "Район между Яффо и центром, переживший джентрификацию около десяти лет назад. Это тель-авивский 11-й округ, лондонский Шордич, нью-йоркский Бруклин (москвичи, простите, аналог не придумали). Здесь много молодёжи, баров, ресторанов и кофеен — место, где можно параллельно набить тату и подстричь собаку. В общем, вы поняли вайб. На наш взгляд, хороший вариант для первой короткой поездки, особенно если вы не против барно-вечериночной жизни.",
+          hood_neve_n: "Неве-Цедек",
+          hood_neve_d: "Милая историческая и туристическая часть города. Как и Флорентин, находится между Яффо и центром, но ближе к последнему. Здесь невысокие дома, рестораны и кафе, галереи и бутики. Близко к морю, довольно спокойно и уютно. Хороший выбор, если вы приезжаете с детьми или цените тишину и красоту больше всего.",
+          hood_kerem_n: "Керем ха-Тейманим",
+          hood_kerem_d: "Дачные настроения в центре города. Маленькие дома с выходом прямо на улицу, две минуты до моря, три — до рынка. Очень много небольших кафе с разными кухнями: от классических израильских шашлычных и хумусных до эфиопского ресторана и раменной. Вайб немного хиппи, хотя джентрификацию никто не отменял. Советуем выбирать жильё в части района ближе к морю и дальше от рынка — если не хотите, чтобы в шесть утра вас будили открывающиеся лавки.",
+          hood_center_n: "Центр (Лев ха-Ир)",
+          hood_center_d: "Его невероятное преимущество — соседство с нами (лол!). А в целом отсюда относительно близко и до моря, и до рынка, и до свадьбы, и до других исторических мест — особенно если выбрать центральные улицы. Бульвар Ротшильд, улица Дизенгоф, Шенкин, площадь Дизенгоф — всё это уважаем. Внимание: на Алленби, Бен-Йехуде и Ибн-Гвироль идёт строительство метро. Не всегда шумно, но жить рядом может быть не очень комфортно.",
+          visa_eyebrow: "Формальности",
+          visa_title: "Виза и ETA-IL",
+          visa_p1: "Граждане Франции и России освобождены от визы для туристической поездки менее 90 дней. Однако с 1 января 2025 года перед выездом необходимо получить электронное разрешение ETA-IL.",
+          visa_p2: "Заявка подаётся онлайн на официальном сайте <a href='https://israel-entry.piba.gov.il' target='_blank' rel='noopener'>israel-entry.piba.gov.il</a>. Она стоит 25 шекелей (около 7 евро) и действует два года. Рассмотрение занимает примерно 72 часа, поэтому лучше оформить заранее. Ваш паспорт должен быть действителен не менее шести месяцев после предполагаемой даты выезда из Израиля. Обратите внимание: это единственный официальный сайт для оформления.",
+          visa_p3: "Если у вас гражданство другой страны, кроме Франции или России, пожалуйста, проверьте условия въезда самостоятельно.",
+          footer_whatsapp: "Канал объявлений (WhatsApp)",
           footer_contact: "Связаться с нами",
           footer_contact_intro: "Вопрос о свадьбе, поездке, парковке или питании?",
           footer_schedule: "Время", footer_social: "Соцсети",
