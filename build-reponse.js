@@ -62,18 +62,50 @@ html = html
   .split('src="banner.jpeg"').join('src="../banner.jpeg"')
   .split('href="cadeau.html"').join('href="../cadeau.html"');
 
-// 6) Hero compact (pas de plein écran : le formulaire doit être visible vite).
+// 5b) Hero en 2 colonnes : affiche à gauche, texte à droite (desktop).
+{
+  const hs = html.indexOf('<section class="hero" id="hero">');
+  const he = html.indexOf("</section>", hs) + "</section>".length;
+  const pStart = html.indexOf('<div class="poster-frame', hs);
+  const pEnd = html.indexOf("</div>", pStart) + "</div>".length;
+  const poster = html.slice(pStart, pEnd).trim();
+  const newHero =
+    '<section class="hero" id="hero">\n' +
+    '      <div class="hero-split">\n' +
+    '        <div class="hero-poster">\n' +
+    "          " + poster + "\n" +
+    "        </div>\n" +
+    '        <div class="hero-copy">\n' +
+    '          <p class="hero-eyebrow" data-i18n="hero_eyebrow"></p>\n' +
+    '          <p class="hero-date" data-i18n="date"></p>\n' +
+    '          <p class="hero-venue" data-i18n="venue"></p>\n' +
+    "        </div>\n" +
+    "      </div>\n" +
+    '      <div class="countdown" id="countdown"></div>\n' +
+    "    </section>";
+  html = html.slice(0, hs) + newHero + html.slice(he);
+}
+
+// 6) Hero compact + disposition 2 colonnes (affiche gauche / texte droite).
 html = html.replace(
   "</style>",
   [
-    "      /* Page /reponse/ : hero réduit pour donner la priorité au formulaire */",
-    "      .hero { min-height: auto !important; padding-top: 5rem; padding-bottom: 1.2rem; }",
-    "      .hero-eyebrow { font-size: 0.62rem; margin-bottom: 0.9rem; }",
-    "      .poster-frame { max-width: 250px; padding: 8px; margin-top: 0.4rem; }",
-    "      .hero-date { margin-top: 1rem; font-size: 0.9rem; }",
-    "      .hero-venue { margin-top: 0.35rem; font-size: 1rem; margin-bottom: 0; }",
+    "      /* Page /reponse/ : hero 2 colonnes, réduit pour montrer vite le formulaire */",
+    "      .hero { min-height: auto !important; padding-top: 5rem; padding-bottom: 1.5rem; }",
+    "      .hero-split { display: flex; align-items: center; justify-content: center; gap: 2.8rem; flex-wrap: wrap; }",
+    "      .hero-poster .poster-frame { margin: 0; max-width: 300px; padding: 9px; }",
+    "      .hero-copy { text-align: left; max-width: 340px; }",
+    "      [dir=\"rtl\"] .hero-copy { text-align: right; }",
+    "      .hero-copy .hero-eyebrow { max-width: none; margin: 0 0 1rem; font-size: 0.64rem; line-height: 1.9; }",
+    "      .hero-copy .hero-date { margin: 0; font-size: 1rem; }",
+    "      .hero-copy .hero-venue { margin: 0.5rem 0 0; font-size: 1.15rem; }",
     "      .countdown { display: none; }",
     "      #rsvp { padding-top: 1.5rem; }",
+    "      @media (max-width: 760px) {",
+    "        .hero-split { flex-direction: column; gap: 1.3rem; }",
+    "        .hero-copy { text-align: center; max-width: 100%; }",
+    "        .hero-poster .poster-frame { max-width: 250px; }",
+    "      }",
     "    </style>",
   ].join("\n")
 );
