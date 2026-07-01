@@ -387,7 +387,8 @@
           /* Page /reponse/ : hero réduit pour donner la priorité au formulaire */
       .hero { min-height: auto !important; padding-top: 5rem; padding-bottom: 1.2rem; }
       .hero-eyebrow { font-size: 0.62rem; margin-bottom: 0.9rem; }
-      .hero-date { margin-top: 0.9rem; font-size: 0.9rem; }
+      .poster-frame { max-width: 250px; padding: 8px; margin-top: 0.4rem; }
+      .hero-date { margin-top: 1rem; font-size: 0.9rem; }
       .hero-venue { margin-top: 0.35rem; font-size: 1rem; margin-bottom: 0; }
       .countdown { display: none; }
       #rsvp { padding-top: 1.5rem; }
@@ -409,7 +410,9 @@
     <!-- ============================ HERO ============================ -->
     <section class="hero" id="hero">
       <p class="hero-eyebrow" data-i18n="hero_eyebrow"></p>
-      
+      <div class="poster-frame reveal">
+        <img class="poster-img" src="../banner.jpeg" alt="Adrien Meyer & Alina Fooks — Tel Aviv, 5 octobre 2026" />
+      </div>
       <p class="hero-date" data-i18n="date"></p>
       <p class="hero-venue" data-i18n="venue"></p>
       <div class="countdown" id="countdown"></div>

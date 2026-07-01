@@ -37,9 +37,7 @@ function cutIncl(s, startNeedle, endNeedle) {
   return s.slice(0, a) + s.slice(b + endNeedle.length);
 }
 
-// 0) Retire l'affiche du hero : l'image est réservée à l'accueil, pas à la
-//    page RSVP (elle doit rester focalisée sur le formulaire).
-html = cutIncl(html, '<div class="poster-frame', "</div>");
+// (L'affiche est conservée dans le hero, en format compact — voir étape 6.)
 
 // 1) Retire les sections du guide (programme → infos pratiques), on garde le RSVP.
 html = cut(html, '<section id="program"', '<section id="rsvp"');
@@ -61,6 +59,7 @@ html = html
 // 5) Corrige les chemins relatifs (la page est dans le sous-dossier /reponse/).
 html = html
   .split('src="music.mp3"').join('src="../music.mp3"')
+  .split('src="banner.jpeg"').join('src="../banner.jpeg"')
   .split('href="cadeau.html"').join('href="../cadeau.html"');
 
 // 6) Hero compact (pas de plein écran : le formulaire doit être visible vite).
@@ -70,7 +69,8 @@ html = html.replace(
     "      /* Page /reponse/ : hero réduit pour donner la priorité au formulaire */",
     "      .hero { min-height: auto !important; padding-top: 5rem; padding-bottom: 1.2rem; }",
     "      .hero-eyebrow { font-size: 0.62rem; margin-bottom: 0.9rem; }",
-    "      .hero-date { margin-top: 0.9rem; font-size: 0.9rem; }",
+    "      .poster-frame { max-width: 250px; padding: 8px; margin-top: 0.4rem; }",
+    "      .hero-date { margin-top: 1rem; font-size: 0.9rem; }",
     "      .hero-venue { margin-top: 0.35rem; font-size: 1rem; margin-bottom: 0; }",
     "      .countdown { display: none; }",
     "      #rsvp { padding-top: 1.5rem; }",
