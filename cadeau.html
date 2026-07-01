@@ -15,205 +15,84 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Niconne&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Josefin+Sans:wght@300;400;500&family=Frank+Ruhl+Libre:wght@300;400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Yellowtail&family=Oswald:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Frank+Ruhl+Libre:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
     <style>
+
       :root {
-        --navy: #253a53;
-        --navy-deep: #1c2d40;
-        --cream: #f2ddc9;
-        --cream-bright: #fbe0c5;
-        --cream-muted: rgba(242, 221, 201, 0.82);
-        --line: rgba(242, 221, 201, 0.22);
-        --font-script: "Niconne", cursive;
-        --font-display: "Cormorant Garamond", serif;
-        --font-body: "Josefin Sans", sans-serif;
+        --paper: #efe2c6;
+        --paper-card: #f6ecd4;
+        --teal: #2b5566;
+        --teal-deep: #1f4351;
+        --gold-deep: #c88f27;
+        --terracotta: #c1472a;
+        --ink: #33251a;
+        --ink-soft: rgba(51, 37, 26, 0.72);
+        --line: rgba(51, 37, 26, 0.22);
+        --font-script: "Yellowtail", cursive;
+        --font-display: "Oswald", sans-serif;
+        --font-body: "EB Garamond", serif;
       }
       [dir="rtl"] {
-        --font-display: "Frank Ruhl Libre", serif;
-        --font-body: "Frank Ruhl Libre", sans-serif;
+        --font-script: "Frank Ruhl Libre", serif;
+        --font-display: "Frank Ruhl Libre", sans-serif;
+        --font-body: "Frank Ruhl Libre", serif;
       }
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
       body {
         font-family: var(--font-body);
-        color: var(--cream);
-        background-color: var(--navy);
+        color: var(--ink);
+        background-color: var(--paper);
         background-image:
-          radial-gradient(
-            ellipse at 20% 0%,
-            rgba(45, 70, 101, 0.7) 0%,
-            transparent 55%
-          ),
-          radial-gradient(
-            ellipse at 80% 100%,
-            rgba(45, 70, 101, 0.6) 0%,
-            transparent 55%
-          );
+          radial-gradient(ellipse at 12% 0%, rgba(43, 85, 102, 0.18) 0%, transparent 45%),
+          radial-gradient(ellipse at 100% 28%, rgba(224, 166, 55, 0.22) 0%, transparent 48%),
+          radial-gradient(ellipse at 50% 100%, rgba(193, 71, 42, 0.1) 0%, transparent 55%);
         background-attachment: fixed;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
+        min-height: 100vh; display: flex; flex-direction: column;
       }
 
-      .top-bar {
-        position: fixed;
-        top: 1rem;
-        right: 1.2rem;
-        z-index: 200;
-        display: flex;
-        gap: 0.3rem;
-      }
-      [dir="rtl"] .top-bar {
-        right: auto;
-        left: 1.2rem;
-      }
+      .top-bar { position: fixed; top: 1rem; right: 1.2rem; z-index: 200; display: flex; gap: 0.3rem; }
+      [dir="rtl"] .top-bar { right: auto; left: 1.2rem; }
       .lang-btn {
-        background: rgba(242, 221, 201, 0.12);
-        border: 1px solid var(--line);
-        padding: 0.3rem 0.55rem;
-        font-family: var(--font-body);
-        font-size: 0.62rem;
-        letter-spacing: 0.05em;
-        color: var(--cream);
-        cursor: pointer;
-        border-radius: 6px;
-        transition: all 0.3s ease;
+        background: rgba(51, 37, 26, 0.06); border: 1px solid var(--line);
+        padding: 0.3rem 0.55rem; font-family: var(--font-display); font-weight: 500; font-size: 0.62rem;
+        letter-spacing: 0.08em; color: var(--ink); cursor: pointer; border-radius: 5px; transition: all 0.3s ease;
       }
-      .lang-btn:hover,
-      .lang-btn.active {
-        background: var(--cream);
-        color: var(--navy);
-      }
+      .lang-btn:hover, .lang-btn.active { background: var(--teal); color: var(--paper); border-color: var(--teal); }
 
-      main {
-        flex: 1;
-        padding: 7rem 1.5rem 4rem;
-      }
-      .wrap {
-        max-width: 640px;
-        margin: 0 auto;
-      }
+      main { flex: 1; padding: 7rem 1.5rem 4rem; }
+      .wrap { max-width: 640px; margin: 0 auto; }
 
       .back-link {
-        display: inline-block;
-        font-family: var(--font-body);
-        font-size: 0.66rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--cream-muted);
-        text-decoration: none;
-        margin-bottom: 2rem;
+        display: inline-block; font-family: var(--font-display); font-weight: 500; font-size: 0.66rem;
+        letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal);
+        text-decoration: none; margin-bottom: 2rem;
       }
-      .back-link:hover {
-        color: var(--cream);
-      }
+      .back-link:hover { color: var(--terracotta); }
 
-      h1 {
-        font-family: var(--font-script);
-        font-size: clamp(2.8rem, 9vw, 4.2rem);
-        text-align: center;
-        line-height: 1.05;
-        margin-bottom: 1rem;
-      }
-      .intro {
-        font-family: var(--font-display);
-        font-size: 1.15rem;
-        line-height: 1.8;
-        color: var(--cream-muted);
-        text-align: center;
-        margin-bottom: 2.5rem;
-      }
-      .divider {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin: 2rem auto;
-        max-width: 220px;
-      }
-      .divider::before,
-      .divider::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: var(--line);
-      }
-      .divider span {
-        color: var(--cream);
-      }
+      h1 { font-family: var(--font-script); font-size: clamp(2.8rem, 9vw, 4.4rem); color: var(--terracotta); text-align: center; line-height: 1.05; margin-bottom: 1rem; }
+      .intro { font-family: var(--font-body); font-size: 1.2rem; line-height: 1.75; color: var(--ink-soft); text-align: center; margin-bottom: 2.5rem; }
+      .divider { display: flex; align-items: center; gap: 1rem; margin: 2rem auto; max-width: 220px; }
+      .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+      .divider span { color: var(--gold-deep); }
 
-      .bank-card {
-        background: rgba(242, 221, 201, 0.06);
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        padding: 2rem 1.8rem;
-        margin-bottom: 1.5rem;
-      }
-      .bank-card h2 {
-        font-family: var(--font-script);
-        font-size: 2rem;
-        color: var(--cream-bright);
-        margin-bottom: 1.2rem;
-      }
-      .bank-row {
-        display: flex;
-        justify-content: space-between;
-        gap: 1rem;
-        font-family: var(--font-display);
-        font-size: 1.08rem;
-        padding: 0.55rem 0;
-        border-bottom: 1px solid rgba(242, 221, 201, 0.1);
-      }
-      .bank-row:last-child {
-        border-bottom: none;
-      }
-      .bank-row .k {
-        color: var(--cream-muted);
-        font-weight: 500;
-        flex-shrink: 0;
-      }
-      .bank-row .v {
-        color: var(--cream);
-        text-align: right;
-        word-break: break-word;
-      }
+      .bank-card { background: var(--paper-card); border: 1px solid var(--line); border-radius: 10px; padding: 2rem 1.8rem; margin-bottom: 1.5rem; box-shadow: 0 8px 22px rgba(51, 37, 26, 0.09); }
+      .bank-card h2 { font-family: var(--font-script); font-size: 2rem; color: var(--terracotta); margin-bottom: 1.2rem; }
+      .bank-row { display: flex; justify-content: space-between; gap: 1rem; font-family: var(--font-body); font-size: 1.15rem; padding: 0.55rem 0; border-bottom: 1px solid var(--line); }
+      .bank-row:last-child { border-bottom: none; }
+      .bank-row .k { color: var(--teal); font-family: var(--font-display); font-weight: 500; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; flex-shrink: 0; align-self: center; }
+      .bank-row .v { color: var(--ink); text-align: right; word-break: break-word; }
 
-      .thanks {
-        text-align: center;
-        font-family: var(--font-display);
-        font-style: italic;
-        font-size: 1.3rem;
-        color: var(--cream-bright);
-        margin-top: 2.5rem;
-      }
+      .thanks { text-align: center; font-family: var(--font-body); font-style: italic; font-size: 1.35rem; color: var(--terracotta); margin-top: 2.5rem; }
 
-      footer {
-        background: var(--navy-deep);
-        padding: 2.5rem 1.5rem;
-        text-align: center;
-      }
-      .footer-credit {
-        font-family: var(--font-body);
-        font-size: 0.65rem;
-        letter-spacing: 0.1em;
-        color: rgba(242, 221, 201, 0.45);
-      }
+      footer { background: var(--teal-deep); padding: 2.5rem 1.5rem; text-align: center; }
+      .footer-credit { font-family: var(--font-display); font-size: 0.66rem; letter-spacing: 0.1em; color: rgba(239, 226, 198, 0.6); }
 
       @media (max-width: 600px) {
-        .bank-row {
-          flex-direction: column;
-          gap: 0.15rem;
-        }
-        .bank-row .v {
-          text-align: left;
-        }
+        .bank-row { flex-direction: column; gap: 0.15rem; }
+        .bank-row .v { text-align: left; }
       }
     </style>
   </head>

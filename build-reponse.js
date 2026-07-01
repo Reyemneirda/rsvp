@@ -28,6 +28,19 @@ function cut(s, startNeedle, endNeedle) {
   return s.slice(0, a) + s.slice(b);
 }
 
+/** Comme cut(), mais retire aussi la fin de `endNeedle` (borne incluse). */
+function cutIncl(s, startNeedle, endNeedle) {
+  const a = s.indexOf(startNeedle);
+  if (a === -1) throw new Error("Marqueur introuvable: " + startNeedle);
+  const b = s.indexOf(endNeedle, a);
+  if (b === -1) throw new Error("Marqueur introuvable: " + endNeedle);
+  return s.slice(0, a) + s.slice(b + endNeedle.length);
+}
+
+// 0) Retire l'affiche du hero : l'image est réservée à l'accueil, pas à la
+//    page RSVP (elle doit rester focalisée sur le formulaire).
+html = cutIncl(html, '<div class="poster-frame', "</div>");
+
 // 1) Retire les sections du guide (programme → infos pratiques), on garde le RSVP.
 html = cut(html, '<section id="program"', '<section id="rsvp"');
 
@@ -57,8 +70,6 @@ html = html.replace(
     "      /* Page /reponse/ : hero réduit pour donner la priorité au formulaire */",
     "      .hero { min-height: auto !important; padding-top: 5rem; padding-bottom: 1.2rem; }",
     "      .hero-eyebrow { font-size: 0.62rem; margin-bottom: 0.9rem; }",
-    "      .hero-names { font-size: clamp(2.2rem, 7vw, 3.2rem); }",
-    "      .hero-names .amp { font-size: 0.45em; margin: 0.02em 0; }",
     "      .hero-date { margin-top: 0.9rem; font-size: 0.9rem; }",
     "      .hero-venue { margin-top: 0.35rem; font-size: 1rem; margin-bottom: 0; }",
     "      .countdown { display: none; }",

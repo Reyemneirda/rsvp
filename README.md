@@ -1,9 +1,11 @@
 # Site RSVP — Mariage Adrien & Alina
 
-Site web dédié au RSVP, inspiré du style « Sharon & Lucas » (bleu marine + crème,
-police Niconne). Sections : **programme** de la soirée, **lieu** (Beit Andromeda),
-**hébergement** (quartiers de Tel Aviv-Jaffa), **infos pratiques** (transport,
-ETA-IL, climat/tenue), **confirmation de présence**, **page cadeau** et footer.
+Site web dédié au RSVP, thème **affiche de cinéma vintage** (façon *Casablanca*)
+tiré de `banner.jpeg` : papier crème, bleu canard, jaune doré, rouge terracotta ;
+typo brush script (Yellowtail), condensé (Oswald) et serif (EB Garamond). Sections :
+**programme** de la soirée, **lieu** (Beit Andromeda), **hébergement** (quartiers de
+Tel Aviv-Jaffa), **infos pratiques** (transport, ETA-IL, climat/tenue),
+**confirmation de présence**, **page cadeau** et footer.
 
 Contenu repris du _Guide pratique du mariage_ (Adrien & Alina, 5 octobre 2026).
 
@@ -22,6 +24,7 @@ Contenu repris du _Guide pratique du mariage_ (Adrien & Alina, 5 octobre 2026).
 | `build-reponse.js`   | Génère `reponse/index.html` depuis `index.html` (`node build-reponse.js`) |
 | `cadeau.html`        | Page « Participation au cadeau » (coordonnées bancaires)             |
 | `apps-script.js`     | Backend Google Apps Script (identique au save-the-date)              |
+| `banner.jpeg`        | Affiche « Tel Aviv » — hero de l'accueil + base du thème visuel      |
 | `music.mp3`          | Musique de fond                                                      |
 
 > **Lien RSVP direct** (à envoyer par SMS) : `https://reyemneirda.github.io/rsvp/reponse/`
