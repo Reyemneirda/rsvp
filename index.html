@@ -1045,6 +1045,17 @@
         else { bgMusic.pause(); musicBtn.textContent = "▶"; }
       }
 
+      /* Coupe la musique quand on quitte l'onglet/la page ; reprend au retour si elle jouait. */
+      let musicWasPlaying = false;
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          musicWasPlaying = !bgMusic.paused;
+          if (musicWasPlaying) { bgMusic.pause(); musicBtn.textContent = "▶"; }
+        } else if (musicWasPlaying) {
+          bgMusic.play().then(() => { musicBtn.textContent = "⏸"; }).catch(() => {});
+        }
+      });
+
       /* ---------- Langue ---------- */
       function setLang(lang) {
         const t = TRANSLATIONS[lang];
