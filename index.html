@@ -223,6 +223,47 @@
       }
       .tl-desc { font-family: var(--font-body); font-size: 1.12rem; color: var(--ink-soft); }
 
+      /* ============== ANNONCE HORAIRES (17h30 / 19h) ==============
+         Deux « billets » côte à côte : accueil puis Houppa.
+         Textes dans TRANSLATIONS (clés when_*). */
+      .hero-when {
+        display: inline-block; margin-top: 1rem; padding: 0.45rem 1.1rem;
+        font-family: var(--font-display); font-weight: 500; font-size: 0.8rem;
+        letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--paper); background: var(--teal); border-radius: 999px;
+        animation: fadeUp 1s ease-out 0.8s both;
+      }
+      .when-cards {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem;
+        max-width: 640px; margin: 2.2rem auto 0;
+      }
+      .when-card {
+        background: rgba(255, 255, 255, 0.45); border: 1px dashed var(--gold-deep);
+        border-radius: 10px; padding: 1.6rem 1.2rem; text-align: center;
+        box-shadow: 0 8px 24px rgba(51, 37, 26, 0.12);
+        transition: transform 0.3s ease;
+      }
+      .when-card:nth-child(1) { transform: rotate(-1.2deg); }
+      .when-card:nth-child(2) { transform: rotate(1.2deg); }
+      .when-card:hover { transform: rotate(0) translateY(-4px); }
+      .when-icon { font-size: 1.8rem; }
+      .when-time {
+        font-family: var(--font-script); font-size: 3.2rem; line-height: 1.1;
+        color: var(--terracotta); margin: 0.3rem 0 0.4rem;
+      }
+      .when-title {
+        font-family: var(--font-display); font-weight: 500; font-size: 1.05rem;
+        text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink); margin-bottom: 0.4rem;
+      }
+      .when-desc { font-family: var(--font-body); font-size: 1.08rem; line-height: 1.5; color: var(--ink-soft); }
+      .when-note {
+        font-family: var(--font-body); font-style: italic; font-size: 1.12rem;
+        color: var(--ink-soft); text-align: center; margin-top: 2rem;
+      }
+      @media (max-width: 560px) {
+        .when-cards { grid-template-columns: 1fr; max-width: 340px; }
+      }
+
       /* ============== LIEU ============== */
       .venue-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; margin-top: 2.5rem; }
       .venue-text p { font-family: var(--font-body); font-size: 1.22rem; line-height: 1.8; color: var(--ink); margin-bottom: 0.4rem; }
@@ -424,18 +465,43 @@
       </div>
       <p class="hero-date" data-i18n="date"></p>
       <p class="hero-venue" data-i18n="venue"></p>
+      <p class="hero-when" data-i18n="hero_when"></p>
       <div class="countdown" id="countdown"></div>
       <div class="hero-actions">
         <a class="hero-btn hero-btn-ghost" href="#welcome" data-i18n="hero_guide_btn"></a>
         <a class="hero-btn hero-btn-solid" href="cadeau.html" data-i18n="hero_gift_btn"></a>
       </div>
-      <div class="scroll-hint" onclick="document.getElementById('welcome').scrollIntoView({behavior:'smooth'})">
+      <div class="scroll-hint" onclick="document.getElementById('when').scrollIntoView({behavior:'smooth'})">
         <span data-i18n="scroll"></span>
         <div class="scroll-arrow"></div>
       </div>
     </section>
 
-    <!-- PROGRAMME retiré temporairement (pas encore décidé). Traductions prog_* conservées. -->
+    <!-- ======================= HORAIRES (annonce) ======================= -->
+    <!-- Annonce festive : accueil 17h30, Houppa 19h. Le programme détaillé
+         (dîner, soirée…) viendra plus tard — traductions prog_* conservées. -->
+    <section id="when">
+      <div class="wrap-narrow reveal">
+        <p class="eyebrow" data-i18n="when_eyebrow"></p>
+        <h2 class="h-section" data-i18n="when_title"></h2>
+        <p class="lede" data-i18n="when_intro"></p>
+        <div class="when-cards">
+          <div class="when-card">
+            <div class="when-icon">🥂</div>
+            <div class="when-time" data-i18n="when_1_time"></div>
+            <div class="when-title" data-i18n="when_1_t"></div>
+            <p class="when-desc" data-i18n="when_1_d"></p>
+          </div>
+          <div class="when-card">
+            <div class="when-icon">💍</div>
+            <div class="when-time" data-i18n="when_2_time"></div>
+            <div class="when-title" data-i18n="when_2_t"></div>
+            <p class="when-desc" data-i18n="when_2_d"></p>
+          </div>
+        </div>
+        <p class="when-note" data-i18n="when_note"></p>
+      </div>
+    </section>
 
     <!-- ========================= MOT D'ACCUEIL ========================== -->
     <section id="welcome" class="section-alt">
@@ -761,6 +827,16 @@
           gift_text: "En Israël, la tradition veut qu'on offre un chèque. Une boîte sera prévue le soir du mariage — et pour ceux qui préfèrent le virement, toutes les infos sont ici.",
           gift_btn: "Voir les coordonnées",
           // --- Guide ---
+          // Annonce horaires (section #when + pastille du hero)
+          hero_when: "Accueil 17h30 · Houppa 19h",
+          when_eyebrow: "Notez bien l'heure !",
+          when_title: "Rendez-vous à 17h30",
+          when_intro: "Sortez vos plus beaux habits et vos chaussures de danse : on vous attend dès 17h30 pour trinquer ensemble, avant de nous dire « oui » sous la Houppa à 19h. 🎉",
+          when_1_time: "17h30", when_1_t: "Accueil & cocktail",
+          when_1_d: "Bulles, amuse-bouches et retrouvailles au coucher du soleil sur Jaffa.",
+          when_2_time: "19h00", when_2_t: "Cérémonie de la Houppa",
+          when_2_d: "Le grand moment ! Mouchoirs recommandés, applaudissements obligatoires.",
+          when_note: "Et ensuite ? Dîner, musique et danse jusqu'au bout de la nuit… Le programme complet arrive bientôt ✨",
           welcome_eyebrow: "Un mot pour vous",
           welcome_title: "Bienvenue à Tel-Aviv",
           welcome_p1: "Bonjour ! Nous avons hâte de vous accueillir à Tel-Aviv dès ce mois d'octobre. Nous sommes impatients de partager avec vous cette journée si importante et, ce qui est tout aussi passionnant, de vous faire découvrir notre ville préférée, celle où nous nous sommes rencontrés et où nous vivons.",
@@ -876,6 +952,16 @@
           gift_text: "In Israel, the custom is to give a cheque. A box will be set up on the wedding night — and for those who prefer a transfer, all the details are here.",
           gift_btn: "See the details",
           // --- Guide ---
+          // Timing announcement (#when section + hero pill)
+          hero_when: "Welcome 5:30 PM · Chuppah 7 PM",
+          when_eyebrow: "Save the time!",
+          when_title: "See you at 5:30 PM",
+          when_intro: "Put on your finest outfit and your dancing shoes: we'll be waiting for you from 5:30 PM to raise a glass together, before we say “I do” under the Chuppah at 7 PM. 🎉",
+          when_1_time: "5:30 PM", when_1_t: "Welcome & cocktails",
+          when_1_d: "Bubbles, bites and happy reunions as the sun sets over Jaffa.",
+          when_2_time: "7:00 PM", when_2_t: "Chuppah ceremony",
+          when_2_d: "The big moment! Tissues recommended, applause mandatory.",
+          when_note: "And then? Dinner, music and dancing all night long… The full programme is coming soon ✨",
           welcome_eyebrow: "A word for you",
           welcome_title: "Welcome to Tel Aviv",
           welcome_p1: "Hi! We are looking forward to welcoming you to Tel Aviv this October. We cannot wait to share this important day with you and, just as excitingly, to show you our favourite city — the one where we met and where we live.",
@@ -990,6 +1076,16 @@
           gift_text: "בישראל נהוג לתת צ'ק. תוצב קופסה בערב החתונה — ולמי שמעדיף העברה בנקאית, כל הפרטים כאן.",
           gift_btn: "לצפייה בפרטים",
           // --- Guide ---
+          // הודעת שעות (סקשן #when + תגית בראש העמוד)
+          hero_when: "קבלת פנים 17:30 · חופה 19:00",
+          when_eyebrow: "שימו לב לשעה!",
+          when_title: "נפגשים ב-17:30",
+          when_intro: "הוציאו את הבגדים היפים ואת נעלי הריקוד: מחכים לכם כבר מ-17:30 להרים כוסית יחד, לפני שנגיד „כן” מתחת לחופה ב-19:00. 🎉",
+          when_1_time: "17:30", when_1_t: "קבלת פנים וקוקטייל",
+          when_1_d: "בועות, נשנושים ומפגשים שמחים עם השקיעה על יפו.",
+          when_2_time: "19:00", when_2_t: "טקס החופה",
+          when_2_d: "הרגע הגדול! מומלץ להביא טישו, מחיאות כפיים חובה.",
+          when_note: "ואחר כך? ארוחת ערב, מוזיקה וריקודים עד השעות הקטנות… התוכנית המלאה בקרוב ✨",
           welcome_eyebrow: "כמה מילים",
           welcome_title: "ברוכים הבאים לתל אביב",
           welcome_p1: "שלום! אנחנו מצפים לארח אתכם בתל אביב כבר באוקטובר הקרוב. אנחנו נרגשים לחלוק אתכם את היום החשוב הזה, ולא פחות מכך — להראות לכם את העיר האהובה עלינו, זו שבה הכרנו ובה אנחנו חיים.",
@@ -1104,6 +1200,16 @@
           gift_text: "В Израиле принято дарить чек. В вечер свадьбы будет коробка — а для тех, кто предпочитает перевод, все реквизиты здесь.",
           gift_btn: "Посмотреть реквизиты",
           // --- Guide ---
+          // Анонс времени (секция #when + плашка в шапке)
+          hero_when: "Сбор гостей 17:30 · Хупа 19:00",
+          when_eyebrow: "Запомните время!",
+          when_title: "Ждём вас в 17:30",
+          when_intro: "Доставайте самые красивые наряды и туфли для танцев: ждём вас с 17:30, чтобы поднять бокалы вместе, а в 19:00 мы скажем друг другу «да» под Хупой. 🎉",
+          when_1_time: "17:30", when_1_t: "Сбор гостей и коктейль",
+          when_1_d: "Игристое, закуски и радостные встречи на закате над Яффо.",
+          when_2_time: "19:00", when_2_t: "Церемония Хупа",
+          when_2_d: "Самый главный момент! Платочки рекомендуются, аплодисменты обязательны.",
+          when_note: "А дальше? Ужин, музыка и танцы до самого утра… Полная программа — совсем скоро ✨",
           welcome_eyebrow: "Пара слов",
           welcome_title: "Добро пожаловать в Тель-Авив",
           welcome_p1: "Привет! Мы ждём вас в Тель-Авиве уже в этом октябре. Нам не терпится разделить с вами этот важный день и, что не менее интересно, показать наш любимый город, где мы познакомились и живём.",

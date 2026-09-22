@@ -40,6 +40,8 @@ function cutIncl(s, startNeedle, endNeedle) {
 // (L'affiche est conservée dans le hero, en format compact — voir étape 6.)
 
 // 1) Retire les sections du guide (accueil → visa), on garde le RSVP.
+//    L'annonce des horaires (#when, 17h30 / 19h) est placée AVANT #welcome :
+//    elle est donc conservée, pour que les invités arrivant par SMS la voient.
 html = cut(html, '<section id="welcome"', '<section id="rsvp"');
 
 // 2) Retire la section « Cadeau » de l'accueil (le bouton cadeau reste dans
@@ -82,6 +84,7 @@ html = html
     '          <p class="hero-eyebrow" data-i18n="hero_eyebrow"></p>\n' +
     '          <p class="hero-date" data-i18n="date"></p>\n' +
     '          <p class="hero-venue" data-i18n="venue"></p>\n' +
+    '          <p class="hero-when" data-i18n="hero_when"></p>\n' +
     "        </div>\n" +
     "      </div>\n" +
     '      <div class="countdown" id="countdown"></div>\n' +
@@ -102,6 +105,7 @@ html = html.replace(
     "      .hero-copy .hero-eyebrow { max-width: none; margin: 0 0 1rem; font-size: 0.64rem; line-height: 1.9; }",
     "      .hero-copy .hero-date { margin: 0; font-size: 1rem; }",
     "      .hero-copy .hero-venue { margin: 0.5rem 0 0; font-size: 1.15rem; }",
+    "      .hero-copy .hero-when { font-size: 0.7rem; }",
     "      .countdown { display: none; }",
     "      #rsvp { padding-top: 1.5rem; }",
     "      @media (max-width: 760px) {",
