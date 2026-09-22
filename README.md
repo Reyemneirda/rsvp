@@ -6,7 +6,9 @@ typo brush script (Yellowtail), condensé (Oswald) et serif (EB Garamond). Secti
 **mot d'accueil**, **lieu** (Beit Andromeda), **comment venir** (vols, quand arriver,
 transports), **où loger** (quartiers de Tel Aviv-Jaffa), **visa / ETA-IL**,
 **confirmation de présence**, **page cadeau** et footer.
-_(La section « programme » est retirée pour le moment — traductions `prog_*` conservées.)_
+**Annonce des horaires** (`#when`, juste après l'affiche) : accueil **17h30**, Houppa **19h**
+— textes dans les clés `hero_when` / `when_*` de `TRANSLATIONS` (4 langues).
+_(Le programme détaillé viendra plus tard — traductions `prog_*` conservées.)_
 
 Contenu repris du _Guide pratique du mariage_ (Adrien & Alina, 5 octobre 2026).
 
