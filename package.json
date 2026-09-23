@@ -1,0 +1,8 @@
+{
+  "name": "rsvp-mariage",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "build": "node build-reponse.js"
+  }
+}

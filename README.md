@@ -27,6 +27,7 @@ Contenu repris du _Guide pratique du mariage_ (Adrien & Alina, 5 octobre 2026).
 | `build-reponse.js`   | Génère `reponse/index.html` depuis `index.html` (`node build-reponse.js`) |
 | `cadeau.html`        | Page « Participation au cadeau » (coordonnées bancaires)             |
 | `apps-script.js`     | Backend Google Apps Script (identique au save-the-date)              |
+| `test/`              | Tests (`npm test`) : vérification de la réponse du script côté formulaire |
 | `banner.jpeg`        | Affiche « Tel Aviv » — hero de l'accueil + base du thème visuel      |
 | `music.mp3`          | Musique de fond                                                      |
 

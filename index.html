@@ -388,6 +388,7 @@
       .form-status.sending { color: var(--ink-soft); }
       .form-status.success { color: var(--success); }
       .form-status.error { color: var(--error); }
+      .form-status.error a { color: inherit; text-decoration: underline; }
       .success-message { display: none; text-align: center; padding: 1.5rem 0; }
       .success-message.visible { display: block; }
       .success-icon { font-size: 2.4rem; color: var(--gold-deep); margin-bottom: 1rem; }
@@ -819,6 +820,7 @@
           success_title_no: "Merci de votre réponse",
           success_sub_no: "Nous sommes désolés que vous ne puissiez pas venir. Vous nous manquerez !",
           error: "Une erreur est survenue. Veuillez réessayer.",
+          error_send: "Votre réponse n'a pas pu être enregistrée. Réessayez dans un instant, ou <a href='https://wa.me/972502276945' target='_blank' rel='noopener'>écrivez-nous sur WhatsApp</a>.",
           error_name: "Merci d'indiquer votre prénom et nom.",
           error_comes: "Merci d'indiquer si vous serez présent(e) ou non.",
           // Cadeau
@@ -945,6 +947,7 @@
           success_title_no: "Thank you for letting us know",
           success_sub_no: "We're sorry you can't make it. You'll be missed!",
           error: "Something went wrong. Please try again.",
+          error_send: "Your response could not be saved. Please try again in a moment, or <a href='https://wa.me/972502276945' target='_blank' rel='noopener'>message us on WhatsApp</a>.",
           error_name: "Please enter your first and last name.",
           error_comes: "Please indicate whether you will be attending.",
           gift_eyebrow: "Your presence above all",
@@ -1069,6 +1072,7 @@
           success_title_no: "תודה על התשובה",
           success_sub_no: "!חבל שלא תוכלו להגיע. נתגעגע אליכם",
           error: "אירעה שגיאה. אנא נסו שוב.",
+          error_send: "לא הצלחנו לשמור את תשובתכם. נסו שוב בעוד רגע, או <a href='https://wa.me/972502276945' target='_blank' rel='noopener'>כתבו לנו בוואטסאפ</a>.",
           error_name: "אנא הזינו שם פרטי ושם משפחה.",
           error_comes: "אנא ציינו אם תגיעו או לא.",
           gift_eyebrow: "הנוכחות שלכם מעל הכול",
@@ -1193,6 +1197,7 @@
           success_title_no: "Спасибо за ответ",
           success_sub_no: "Жаль, что вы не сможете прийти. Будем скучать!",
           error: "Произошла ошибка. Попробуйте ещё раз.",
+          error_send: "Не удалось сохранить ваш ответ. Попробуйте ещё раз через минуту или <a href='https://wa.me/972502276945' target='_blank' rel='noopener'>напишите нам в WhatsApp</a>.",
           error_name: "Пожалуйста, укажите имя и фамилию.",
           error_comes: "Пожалуйста, укажите, придёте ли вы.",
           gift_eyebrow: "Ваше присутствие важнее всего",
@@ -1418,12 +1423,27 @@
             console.log("📋 Mode démo — RSVP:", payload);
             await new Promise((r) => setTimeout(r, 700));
           } else {
-            await fetch(APPS_SCRIPT_URL, {
-              method: "POST",
-              mode: "no-cors",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(payload),
-            });
+            // Envoi en texte brut (requête "simple", sans preflight CORS) :
+            // Apps Script renvoie alors une réponse lisible par le navigateur,
+            // ce qui permet de détecter un échec au lieu d'afficher un faux succès.
+            const ctrl = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), RSVP_TIMEOUT_MS);
+            let resp;
+            try {
+              resp = await fetch(APPS_SCRIPT_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify(payload),
+                signal: ctrl.signal,
+              });
+            } finally {
+              clearTimeout(timer);
+            }
+            if (!resp.ok) throw new Error("HTTP " + resp.status);
+            const bodyText = await resp.text();
+            if (!isRsvpSaved(bodyText)) {
+              throw new Error("Réponse inattendue du script: " + bodyText.slice(0, 200));
+            }
           }
 
           const t2 = TRANSLATIONS[currentLang];
@@ -1440,9 +1460,27 @@
           document.getElementById("success-message").classList.add("visible");
         } catch (err) {
           console.error("Erreur RSVP:", err);
-          status.textContent = t.error;
+          status.innerHTML = t.error_send || t.error;
           status.className = "form-status error";
           btn.disabled = false;
+        }
+      }
+
+      /** Délai maximal d'attente du script Google avant d'afficher une erreur. */
+      const RSVP_TIMEOUT_MS = 20000;
+
+      /**
+       * Vrai uniquement si le corps de réponse est le JSON de confirmation
+       * renvoyé par doPost ({ result: "ok" }). Une page HTML (accès refusé,
+       * exception du script…) ou un corps vide compte comme un échec.
+       */
+      function isRsvpSaved(text) {
+        if (!text) return false;
+        try {
+          const data = JSON.parse(text);
+          return !!data && data.result === "ok";
+        } catch (e) {
+          return false;
         }
       }
 
