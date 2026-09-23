@@ -21,8 +21,10 @@
  *  O(15): Enfants ?          ← checkbox (true/false)
  *  P(16): Nb enfants         ← nombre d'enfants (0, 1, 2…) — NOUVELLE COLONNE
  *
- *  ⚠️ Les nouvelles réponses sont insérées AVANT la ligne « Total »
- *     (résumé en bas de feuille), jamais après.
+ *  ⚠️ Les nouvelles réponses vont dans la PREMIÈRE LIGNE LIBRE au-dessus de
+ *     la ligne « Total » (résumé en bas de feuille), juste après les invités
+ *     existants — jamais après « Total ». La ligne « Total » est reconnue même
+ *     écrite « **Total** » (mise en gras façon Markdown).
  *
  *  FONCTIONS :
  *  doGet  → Recherche par téléphone (?p=) ou Telegram (?t=)
@@ -104,12 +106,39 @@ function doGet(e) {
 
 
 /**
- * Trouve l'index (1-based) de la ligne de résumé « Total » (col A = "Total").
+ * Vrai si la cellule est le libellé « Total » (tolère « **Total** », espaces,
+ * majuscules…) : on ne garde que les lettres avant de comparer.
+ */
+function isTotalLabel(v) {
+  return String(v || "").toLowerCase().replace(/[^a-z]/g, "") === "total";
+}
+
+
+/**
+ * Trouve l'index (1-based) de la ligne de résumé « Total » (col A).
  * Recherche depuis le bas. Retourne -1 si absente.
  */
 function findTotalRow(rows) {
   for (var i = rows.length - 1; i >= 1; i--) {
-    if (normalizeName(rows[i][0]) === "total") return i + 1;
+    if (isTotalLabel(rows[i][0])) return i + 1;
+  }
+  return -1;
+}
+
+
+/**
+ * Première ligne libre (1-based) entre l'en-tête et la ligne « Total » :
+ * prénom, nom, guests, téléphone et Telegram (A→E) tous vides.
+ * Retourne -1 s'il n'y en a aucune.
+ */
+function findFirstFreeRow(rows, totalRow) {
+  for (var i = 1; i < totalRow - 1; i++) {
+    var r = rows[i] || [];
+    var free = true;
+    for (var c = 0; c < 5; c++) {
+      if (String(r[c] === undefined || r[c] === null ? "" : r[c]).trim() !== "") { free = false; break; }
+    }
+    if (free) return i + 1;
   }
   return -1;
 }
@@ -187,7 +216,7 @@ function doPost(e) {
   // 2) Repli : recherche par Prénom + Nom (normalisés) — on ignore la ligne Total
   if (matchedRow === -1) {
     for (var j = 1; j < rows.length; j++) {
-      if (normalizeName(rows[j][0]) === "total") continue;
+      if (isTotalLabel(rows[j][0])) continue;
       var firstName = normalizeName(rows[j][0]);
       var lastName  = normalizeName(rows[j][1]);
 
@@ -204,16 +233,22 @@ function doPost(e) {
     row = matchedRow + 1;
     found = true;
   } else {
-    // Nouvelle ligne : insérée AVANT la ligne « Total ».
-    // On insère avant la dernière ligne de données (Total - 1) pour rester
-    // dans la plage des formules de résumé (qui s'étendent automatiquement).
+    // Nouvelle ligne : première ligne libre au-dessus de « Total », juste
+    // après les invités existants (et dans la plage des formules de résumé).
     var totalRow = findTotalRow(rows);
-    if (totalRow > 2) {
-      sheet.insertRowBefore(totalRow - 1);
-      row = totalRow - 1;
-    } else if (totalRow !== -1) {
-      sheet.insertRowBefore(totalRow);
-      row = totalRow;
+    if (totalRow !== -1) {
+      row = findFirstFreeRow(rows, totalRow);
+      if (row === -1) {
+        // Aucune ligne libre : on insère avant la dernière ligne de données
+        // (Total - 1) pour rester dans la plage des formules de résumé.
+        if (totalRow > 2) {
+          sheet.insertRowBefore(totalRow - 1);
+          row = totalRow - 1;
+        } else {
+          sheet.insertRowBefore(totalRow);
+          row = totalRow;
+        }
+      }
     } else {
       row = sheet.getLastRow() + 1; // pas de ligne Total → ajout en bas
     }
