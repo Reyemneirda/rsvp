@@ -16,7 +16,7 @@ Contenu repris du _Guide pratique du mariage_ (Adrien & Alina, 5 octobre 2026).
 - **Backend** : utilise **le même Google Sheet** que le save-the-date.
   Le formulaire poste vers `APPS_SCRIPT_URL` et remplit `Sheet1` (colonnes A→N).
 - **Musique**, **compte à rebours**, **carte + Waze/Google Maps**.
-- **Coordonnées bancaires** (Europe + Israël) déjà renseignées dans `cadeau.html`.
+- **Coordonnées bancaires** déjà renseignées dans `cadeau.html` : Europe (IBAN FR), international vers Israël (IBAN IL + SWIFT) et virement local en Israël (Banque Hapoalim, agence 170, compte 480252).
 
 ## Fichiers
 

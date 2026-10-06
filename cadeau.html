@@ -8,7 +8,10 @@
 
     <!--
       Page "Participation au cadeau de mariage".
-      Coordonnées bancaires renseignées (virement Europe + Israël).
+      Coordonnées bancaires renseignées :
+        1. virement depuis la France / l'Europe (IBAN FR)
+        2. virement international vers Israël (IBAN IL + SWIFT)
+        3. virement local d'Israël vers Israël (banque / agence / compte)
       Référence demandée : "Mariage A&A + votre nom".
     -->
 
@@ -139,7 +142,7 @@
           </div>
         </div>
 
-        <!-- ============ VIREMENT ISRAËL ============ -->
+        <!-- ============ VIREMENT INTERNATIONAL → ISRAËL ============ -->
         <div class="bank-card">
           <h2 data-i18n="sepa_il"></h2>
           <div class="bank-row">
@@ -152,6 +155,33 @@
           </div>
           <div class="bank-row">
             <span class="k">SWIFT</span><span class="v">POALILIT</span>
+          </div>
+          <div class="bank-row">
+            <span class="k" data-i18n="k_ref"></span
+            ><span class="v" data-i18n="v_ref"></span>
+          </div>
+        </div>
+
+        <!-- ============ VIREMENT LOCAL ISRAËL → ISRAËL ============
+             Pour les invités qui ont un compte en Israël : pas besoin
+             d'IBAN, seuls banque + agence + n° de compte suffisent. -->
+        <div class="bank-card">
+          <h2 data-i18n="transfer_il_local"></h2>
+          <div class="bank-row">
+            <span class="k" data-i18n="k_beneficiary"></span
+            ><span class="v" dir="rtl">אדריאן טומס מאיר</span>
+          </div>
+          <div class="bank-row">
+            <span class="k" data-i18n="k_bank"></span
+            ><span class="v" data-i18n="v_bank_hapoalim"></span>
+          </div>
+          <div class="bank-row">
+            <span class="k" data-i18n="k_branch"></span
+            ><span class="v">170</span>
+          </div>
+          <div class="bank-row">
+            <span class="k" data-i18n="k_account"></span
+            ><span class="v">480252</span>
           </div>
           <div class="bank-row">
             <span class="k" data-i18n="k_ref"></span
@@ -176,10 +206,13 @@
           intro:
             "Votre présence est notre plus beau cadeau. Si vous souhaitez tout de même contribuer, voici nos coordonnées.",
           sepa_eu: "Virement (France & Europe)",
-          sepa_il: "Virement (Israël)",
+          sepa_il: "Virement international (vers Israël)",
+          transfer_il_local: "Virement local (d'Israël vers Israël)",
           k_beneficiary: "Bénéficiaire",
           k_bank: "Banque",
+          k_branch: "Agence",
           k_account: "N° de compte",
+          v_bank_hapoalim: "Banque Hapoalim (12)",
           k_ref: "Référence",
           v_ref: "Mariage A&A + votre nom",
           thanks: "Merci du fond du cœur 💛 Adrien & Alina",
@@ -190,10 +223,13 @@
           intro:
             "Your presence is the greatest gift. If you'd still like to contribute, here are our details.",
           sepa_eu: "Transfer (France & Europe)",
-          sepa_il: "Transfer (Israel)",
+          sepa_il: "International transfer (to Israel)",
+          transfer_il_local: "Local transfer (within Israel)",
           k_beneficiary: "Beneficiary",
           k_bank: "Bank",
+          k_branch: "Branch",
           k_account: "Account number",
+          v_bank_hapoalim: "Bank Hapoalim (12)",
           k_ref: "Reference",
           v_ref: "Wedding A&A + your name",
           thanks: "Thank you from the bottom of our hearts 💛 Adrien & Alina",
@@ -204,10 +240,13 @@
           intro:
             "הנוכחות שלכם היא המתנה היפה ביותר. אם בכל זאת תרצו לתרום, הנה הפרטים שלנו.",
           sepa_eu: "העברה (צרפת ואירופה)",
-          sepa_il: "העברה (ישראל)",
+          sepa_il: "העברה בינלאומית (לישראל)",
+          transfer_il_local: "העברה בתוך ישראל",
           k_beneficiary: "מוטב",
           k_bank: "בנק",
+          k_branch: "סניף",
           k_account: "מספר חשבון",
+          v_bank_hapoalim: "בנק הפועלים (12)",
           k_ref: "אסמכתא",
           v_ref: "חתונה A&A + שמכם",
           thanks: "תודה מעומק הלב 💛 אדריאן ואלינה",
@@ -218,10 +257,13 @@
           intro:
             "Ваше присутствие — лучший подарок. Если вы всё же хотите внести вклад, вот наши реквизиты.",
           sepa_eu: "Перевод (Франция и Европа)",
-          sepa_il: "Перевод (Израиль)",
+          sepa_il: "Международный перевод (в Израиль)",
+          transfer_il_local: "Местный перевод (внутри Израиля)",
           k_beneficiary: "Получатель",
           k_bank: "Банк",
+          k_branch: "Отделение",
           k_account: "Номер счёта",
+          v_bank_hapoalim: "Банк Апоалим (12)",
           k_ref: "Назначение",
           v_ref: "Свадьба A&A + ваше имя",
           thanks: "Благодарим вас от всего сердца 💛 Адриан и Алина",
